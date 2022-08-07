@@ -56,7 +56,7 @@
                         
                       </div>
                       <div class="modal-body">
-                         {% load social_share %}       {% post_to_facebook object_or_url "<p style='color: green;'>facebook</p>" %}       {% post_to_linkedin object_or_url %}       {% post_to_telegram "New Song: " object_or_url %}
+                         {% load social_share %}       {% post_to_facebook object_or_url "<p style='color: green;'>facebook</p>" %}       {% post_to_linkedin object_or_url %}       {% post_to_telegram "Check out this new post" "{{blog.slug}}" "{{blog.title}}" "btn btn-primary" %}
                       </div>
                       <div class="modal-footer">
                        
