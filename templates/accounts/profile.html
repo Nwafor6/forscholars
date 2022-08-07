@@ -1,0 +1,57 @@
+{% extends 'partials/base.html'%}
+{%load static%}
+{% block title%}Profile{% endblock%}
+{%block content%}
+  </div>
+  
+
+
+  <!-- catagory section -->
+
+  <div class="profile">
+    <div class=" row">
+      <div class="col-sm-12 col-md-5 profile-pic">
+        <div class="edit-profile"><a href="{%url 'update-profile'%}
+          "><i class="fa fa-pencil-square-o" aria-hidden="true" style="font-size: 30px;"></i></a></div>
+        
+        <div class="box text-center">
+          <div class="img-box text-center">
+           <a href="{{profile.profile_img.url}}" ><img src="{{profile.profile_img.url}}" alt="" style="border-radius: 100%; width:200px" class="img"></a>
+          </div>
+          <div class="detail-box">
+            <div class="full-name">
+              <h5>{{profile.first_name}} {{profile.last_name}}</h5>
+            </div>
+            <div class="full-name">
+              <h6>Email: {{profile.user}}</h6>
+            </div>
+            <div class="full-name">
+              <h6>Joined: {{profile.date_joined|timesince}}</h6>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-7 shadow round">
+        <div class="other-profile">
+          <h6>Department: {{profile.department}}</h6>
+        </div>
+        <div class="other-profile">
+          <h6>phone: {{profile.phone}}</h6>
+        </div>
+        <div class="other-profile">
+          <h6>Bio:</h6>
+          <p>{{profile.bio}}</p>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+ 
+
+  <!-- end catagory section -->
+
+ 
+
+ {% endblock%}
+ 

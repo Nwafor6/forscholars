@@ -1,0 +1,41 @@
+{% extends 'partials/base.html'%}
+{%load static%}
+{% block title%}About{% endblock%}
+{%block content%}
+
+  <!-- about section -->
+
+  <section class="about_section layout_padding">
+    <div class="container ">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="img-box">
+            <img src="{% static 'images/me.jpg'%}" alt="" style="border-radius: 100%;">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="detail-box">
+            <div class="heading_container">
+              <h2>
+                4Scholars Community
+              </h2>
+            </div>
+             <p>
+              Success is not achieve only by confessing and praying but with hard work, grit and resislent <i>Christian Glory</i>..
+            </p>
+            <p>
+              <b>4scholars</b> community, is an idea of a young Geosciencist and an educationist, who is intrested in the acadmic excellence of young Geoscience students especially students in developing countries. As an educational community we are interested in bringing out the best of you in your acadmics. We have weekly blog posts on various education topics and have provided various materials for exam and self development purposes. 
+            </p>
+             <a href="{%url 'contact'%}">
+              contact us
+            </a>
+          </div>
+        </div>
+      </div>
+  </section>
+
+  <!-- end about section -->
+
+  
+
+  {% endblock%}

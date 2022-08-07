@@ -1,0 +1,51 @@
+{% extends 'partials/base.html'%}
+{%load static%}
+{% block title%}Departments{% endblock%}
+{%block content%}
+  </div>
+
+
+  <!-- catagory section -->
+
+  <section class="catagory_section layout_padding">
+    <div class="catagory_container">
+      <div class="container ">
+        <div class="heading_container heading_center">
+          <h2 id="demo">
+            <!-- Available  -->Departments <!-- in our database -->
+          </h2>
+          <p>
+            Select your department to see different resources we have gathered for you. If you cannot find you department, use the search bar. <!-- If still your department doesn't show up, it either your department is not in our database. To add your department, send us to mail using our contact infomation. You could be one lof our resource personals....Happy learning. -->
+          </p>
+        </div>
+        <div class="row">
+          {%for dept in  departments%}
+          <div class="col-sm-6 col-md-4 ">
+            <div class="box ">
+              <div class="img-box">
+                 <img src="{{dept.cover_img.url}}" alt="{{dept.title}}">
+              </div>
+              <div class="detail-box">
+                <h5>
+                  {{dept.title}}
+                </h5>
+              </div>
+              <div style="margin-top: 5px;"><h6><strong>Faculty:</strong> {{dept.faculty}}</h6></div
+              >
+              <div style="margin-top: 5px;"><span class="badge badge-pill badge-primary">Text <a href="{%url 'text-books' dept.slug%}"style="color: white; text-decoration: none;">Books</a></span><span class="badge badge-pill badge-info"><a href="{%url 'past-questions' dept.slug%}"style="color: white; text-decoration: none;">Past Questions</a></span><span class="badge badge-pill badge-secondary"><a href="{%url 'hand-outs' dept.slug%}"style="color: white; text-decoration: none;">Hand Outs</a></span></div>
+            </div>
+          </div>
+          {%empty%}
+          <div>Please contact admin</div>
+          {%endfor%}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- end catagory section -->
+
+ 
+
+ {% endblock%}
+ 

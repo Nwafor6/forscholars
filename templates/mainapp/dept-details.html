@@ -1,0 +1,143 @@
+{% extends 'partials/base.html'%}
+{%load static%}
+{% block title%}Home{% endblock%}
+{%block content%}
+
+  </div>
+
+
+  <!-- catagory section -->
+
+  <section class="catagory_section layout_padding">
+    <div class="catagory_container">
+      <div class="container ">
+        <div class="heading_container heading_center">
+          <h2>
+            Past Questions Categories
+          </h2>
+          <p>
+            There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration
+          </p>
+        </div>
+        <div >
+          <table class="table table-sm table-hover table-responsive">
+            <h5 class="bg-dark m-0 text- text-light p-1">Past question Table</h5>
+            <thead class="thead-dark">
+              
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">ID</th>
+                <th scope="col">Type</th>
+                <th scope="col">Semester</th>
+                <th scope="col">Year</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                {%for pq in dept_detail%}
+                <th scope="row">{{forloop.counter}}</th>
+                <td>{{pq.title}}</td>
+                <td>{{pq.course_code}}</td>
+                <td>{{pq.file_type}}</td>
+                <td>{{pq.semester}}</td>
+                <td>{{pq.year}}</td>
+              </tr>
+             {%endfor%}
+            </tbody>
+          </table>
+        </div>
+        <div >
+          <table class="table table-sm table-hover table-responsive">
+            <h5 class="bg-dark m-0 text- text-light p-1">Past question Table</h5>
+            <thead class="thead-dark">
+              
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">ID</th>
+                <th scope="col">Type</th>
+                <th scope="col">Semester</th>
+                <th scope="col">Year</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                {%for pq in dept_detail_2%}
+                <th scope="row">{{forloop.counter}}</th>
+                <td>{{pq.title}}</td>
+                <td>{{pq.course_code}}</td>
+                <td>{{pq.file_type}}</td>
+                <td>{{pq.semester}}</td>
+                <td>{{pq.year}}</td>
+              </tr>
+             {%endfor%}
+            </tbody>
+          </table>
+        </div>
+         <div >
+          <table class="table table-sm table-hover table-responsive">
+            <h5 class="bg-dark m-0 text- text-light p-1">Past question Table</h5>
+            <thead class="thead-dark">
+              
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">ID</th>
+                <th scope="col">Type</th>
+                <th scope="col">Semester</th>
+                <th scope="col">Year</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                {%for pq in dept_detail_3%}
+                <th scope="row">{{forloop.counter}}</th>
+                <td>{{pq.title}}</td>
+                <td>{{pq.course_code}}</td>
+                <td>{{pq.file_type}}</td>
+                <td>{{pq.semester}}</td>
+                <td>{{pq.year}}</td>
+              </tr>
+             {%endfor%}
+            </tbody>
+          </table>
+        </div>
+         <div >
+          <table class="table table-sm table-hover table-responsive">
+            <h5 class="bg-dark m-0 text- text-light p-1">Past question Table</h5>
+            <thead class="thead-dark">
+              
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">ID</th>
+                <th scope="col">Type</th>
+                <th scope="col">Semester</th>
+                <th scope="col">Year</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                {%for pq in dept_detail_4%}
+                <th scope="row">{{forloop.counter}}</th>
+                <td>{{pq.title}}</td>
+                <td>{{pq.course_code}}</td>
+                <td>{{pq.file_type}}</td>
+                <td>{{pq.semester}}</td>
+                <td>{{pq.year}}</td>
+              </tr>
+             {%endfor%}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- end catagory section -->
+
+  
+
+ {% endblock%}
+ 

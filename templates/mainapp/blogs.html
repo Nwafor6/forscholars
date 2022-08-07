@@ -1,0 +1,71 @@
+{% extends 'partials/base.html'%}
+{%load static%}
+{% block title%}Blog{% endblock%}
+{%block content%}
+
+  <!-- blog section -->
+
+  <section class="blog_section layout_padding">
+    <div class="container">
+      <div class="heading_container heading_center">
+        <h1>
+          News Room
+        </h1>
+        <div>
+          <h4 class="text-primary">
+            Latest News From SCHOOL, JAMB, ASUU, Post-UTME, WAEC, NECO, NABTEB, Scholarships Opportunities.
+          </h4>
+        </div>
+      </div>
+      <div class="row">
+        {%for blog in blogs%}
+        <div class=" col-lg-3 col-md-4 col-sm-12 mb-2">
+          <!-- <div class="box">
+            <div class="img-box">
+              {%if blog.blog_img%}
+              <img src="{{blog.blog_img.url}}" alt="">
+              {%endif%}
+              <h4 class="blog_date">
+                <span>
+                  {{blog.date_posted}}
+                </span>
+              </h4>
+            </div>
+            <div class="detail-box">
+              <h5>
+                {{blog.title}}
+              </h5>
+              <p>
+                {{blog.body|slice:":200"}}
+              </p>
+              <a href="{%url '_blog' blog.slug%}">
+                Read More
+              </a>
+            </div>
+          </div> -->
+          <div class="card">
+            {%if blog.blog_img%}
+            <img src="{{blog.blog_img.url}}" class="card-img-top" alt="...">
+            {%endif%}
+            <div class="card-body">
+              <h5 class="card-title">{{blog.title}}</h5><hr>
+              <p class="card-text">{{blog.body|slice:":140"}}</p>
+            </div>
+            <div class="card-footer">
+              <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div><a href="{%url '_blog' blog.slug%}">
+                Read More
+              </a>
+            </div>
+          </div>
+        </div>
+        {%endfor%}
+      </div>
+    </div>
+  </section>
+
+  <!-- end blog section -->
+
+  
+
+  {% endblock%}
+  

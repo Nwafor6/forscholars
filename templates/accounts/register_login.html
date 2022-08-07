@@ -1,0 +1,79 @@
+{% extends 'partials/base.html'%}
+{%load static%}
+{%load crispy_forms_tags%}
+{% block title%}{% if page == 'reg' %}Register{%elif page == 'sign_in' %}Sign In {%elif page == 'profile'%}Profile {%else%}logout{%endif%}{% endblock%}
+{%block content%}
+
+  
+
+
+  <!-- catagory section -->
+  
+  <div class="register">
+    <!-- Sign-in -->
+  {% if page == 'reg' %} 
+   <div class="register_bg shadow reg-alone ">
+    <h5 class="text-center">Join 4Scholars</h5>
+    <p>Fill your details, hit submit and see magic <i class="fa fa-smile-o" aria-hidden="true"></i><i class="fa fa-smile-o" aria-hidden="true"></i><i class="fa fa-smile-o" aria-hidden="true"></i><i class="fa fa-smile-o" aria-hidden="true"></i></p>
+      <form method="post">
+        {% csrf_token%}
+        {{form|crispy}}
+        <input type="submit" value="Register" class="btn btn-outline-primary">
+      </form>
+      <div class="sign-in"><a href="{%url 'login'%}" >Sign in</a></div>
+      <div class="logo"><h6 class="text-right" style="font-size: 11px;">4Scholars</h6></div>
+   </div>
+   <!-- End Sign-in -->
+   <!-- Register -->
+   {%elif page == 'sign_in' %}
+    <div class="register_bg shadow">
+      <h5 class="text-center">Login</h5>
+      <p>Welcome Back...We missed you <i class="fa fa-smile-o" aria-hidden="true"></i><i class="fa fa-smile-o" aria-hidden="true"></i></p>
+      <form method="post">
+        {%csrf_token%}
+        <div class="form-group">
+          <label for="exampleInputEmail1">Email address</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
+          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Password</label>
+          <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+        </div>
+        <input type="submit" value="Login" class="btn btn-outline-primary">
+      </form>
+      <div class="sign-in"><a href="{% url 'register'%}" >Register</a></div>
+      <div class="logo"><h6 class="text-right" style="font-size: 11px;">4Scholars</h6></div>
+    </div>
+    <!-- End Register -->
+    <!-- Update Profile -->
+    {%elif page == 'profile'%}
+    <div class="register_bg shadow reg-alone ">
+    <h5 class="text-center">Update Profile </h5>
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token%}
+        {{form.media}}
+        {{form|crispy}}
+        <button type="submit"class="btn btn-outline-primary"><i class="fa fa-floppy-o" aria-hidden="true" style="font-size: 31px;"></i></button>
+      </form>
+      <div class="logo"><h6 class="text-right" style="font-size: 11px;">4Scholars</h6></div>
+   </div>
+   <!-- End of update profile -->
+    {%else%}
+    <!-- Logout -->
+      <div class="register_bg shadow">
+      <h5 class="text-center">Logout</h5>
+      <div class="logout_ques">Are you sure you want to leave <i class="fa fa-frown-o" aria-hidden="true"></i><i class="fa fa-frown-o" aria-hidden="true"></i>???</div>
+      <div class="sign-in"><a href="{% url 'logout_2'%}" >Logout</a></div>
+      <div class="logo"><h6 class="text-right" style="font-size: 11px;">4Scholars</h6></div>
+    </div>
+    <!-- End logout -->
+    {%endif%}
+  </div>
+
+  <!-- end catagory section -->
+
+ 
+
+ {% endblock%}
+ 

@@ -1,0 +1,76 @@
+{% extends 'partials/base.html'%}
+{%load static%}
+{%load crispy_forms_tags%}
+{% block title%}Departments{% endblock%}
+{%block content%}
+
+
+
+  <!-- catagory section -->
+ 
+
+    <section class="catagory_section layout_padding">
+      <div class="catagory_container">
+        <div class="container ">
+          {%if form%}
+           <section class="contact_section layout_padding" style="padding:27px 0">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-7 col-sm-12 ">
+                  <div class="heading_container ">
+                    <h2 class="">
+                      Update Comment
+                    </h2>
+                  </div>
+                  <form method="post">
+                    {%csrf_token%}
+                    <div>
+                      {{form|crispy}}
+                    </div>
+                    <div class="btn-box">
+                      <button>
+                        SEND
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </section>
+          {%else%}
+           <section class="contact_section layout_padding" style="padding:27px 0">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-7 col-sm-12 ">
+                  <div class="heading_container ">
+                    <h2 class="">
+                      Delete Comment
+                    </h2>
+                  </div>
+                  <form method="post">
+                    {%csrf_token%}
+                    <div>
+                      <p> Are you sure you want to delete "<span class="text-danger">{{obj}}</span>"?</p>
+                    </div>
+                    <a href="{{request.META.HTTP_REFERER}}" class="btn btn-primary btn-sm">Go back</a>
+                    <div class="btn-box">
+                      <button>
+                        Delete
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </section>
+          {%endif%}
+      </div>
+    </div>
+  </section>
+
+  <!-- end catagory section -->
+
+ 
+
+ {% endblock%}
+ 

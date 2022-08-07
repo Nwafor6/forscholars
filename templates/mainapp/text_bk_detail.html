@@ -1,0 +1,158 @@
+{% extends 'partials/base.html'%}
+{%load static%}
+{% block title%}Books{% endblock%}
+{%block content%}
+  </div>
+
+
+  <!-- catagory section -->
+
+  <section class="catagory_section layout_padding">
+    <div class="catagory_container">
+      <div class="container ">
+        <div class="heading_container heading_center">
+          <h2>
+            Books Categories
+          </h2>
+          <p>
+            Click the image to see the document before downloading. 
+          </p>
+          {%if books%}
+          <h3>Search results {{books|length}}</h3>
+          {%endif%}
+        </div>
+        <div class="row">
+          {%if page == 'pq'%}
+          {%for pq in dept_detail%}
+          <div class="col-sm-6 col-md-4 ">
+            <div class="box ">
+              <div class="img-box">
+                {%if pq.cover_img%}
+                <a href="{{pq.file.url}}"><img src="{{pq.cover_img.url}}" alt=""></a>
+                {%endif%}
+              </div>
+              <div class="detail-box">
+                <h5>
+                  {{pq.course_code}}
+                </h5>
+               <!--  <p>
+                  {{pq.about_book}}
+                </p> -->
+                <div><span class="badge badge-pill badge-primary">course: {{pq.title|slice:":20"}}..</span></div>
+                 <div><span class="badge badge-pill badge-primary">Semester: {{pq.semester}}</span></div>
+                 <div><span class="badge badge-pill badge-primary">Year: {{pq.year}}</span></div>
+                 <span class="badge badge-pill badge-info"><a href="{{pq.file.url}}" style="color: white; text-decoration:none" download><i class="fa fa-cloud-download" aria-hidden="true"></i></a></span>
+                 <!-- <div style="margin-top: 5px;"></div> -->
+              </div>
+            </div>
+          </div>
+          {%empty%}
+          <div class="alert alert-primary" role="alert" style="background-color: white; border:1px solid #b8daff;">
+            Opps!!! Empty contact admin!! <a href="{%url 'contact'%}">Here</a>
+          </div>
+          {%endfor%}
+
+          {%elif page == 'tb'%}
+          {%for tb in dept_detail%}
+          <div class="col-sm-6 col-md-4 ">
+            <div class="box ">
+              <div class="img-box">
+                {% if tb.cober_img%}
+                <a href="{{pq.file.url}}"><img src="{{tb.cover_img.url}}" alt=""></a>
+                {%endif%}
+              </div>
+              <div class="detail-box">
+                <h5>
+                  {{tb.title}}
+                </h5>
+               <!--  <p>
+                  {{pq.about_book}}
+                </p> -->
+                 <div><span class="badge badge-pill badge-primary">Semester: {{tb.semester}}</span></div>
+                 <div><span class="badge badge-pill badge-primary">Year: {{tb.year}}</span></div>
+                 <span class="badge badge-pill badge-warning"><a href="{{tb.file.url}}" style="color: white; text-decoration:none" download><i class="fa fa-cloud-download" aria-hidden="true"></i></a></span>
+                 <!-- <div style="margin-top: 5px;"></div> -->
+              </div>
+            </div>
+          </div>
+          {%empty%}
+          <div class="alert alert-primary" role="alert" style="background-color: white; border:1px solid #b8daff;">
+            Opps!!! Empty contact admin!! <a href="{%url 'contact'%}">Here</a>
+          </div>
+          {%endfor%}
+          {%elif page == 'ho'%}
+          {%for ho in dept_detail%}
+          <div class="col-sm-6 col-md-4 ">
+            <div class="box ">
+              <div class="img-box">
+                {% if ho.cover_img %}
+                <a href="{{pq.file.url}}"><img src="{{ho.cover_img.url}}" alt=""></a>
+                {%endif%}
+              </div>
+              <div class="detail-box">
+                <h5>
+                  {{ho.title}}
+                </h5>
+               <!--  <p>
+                  {{pq.about_book}}
+                </p> -->
+                 <div><span class="badge badge-pill badge-primary">Semester: {{ho.semester}}</span></div>
+                 <div><span class="badge badge-pill badge-primary">Year: {{ho.year}}</span></div>
+                 <div class="spinner-border " role="status" style="display: none;">
+                  <span class="sr-only"></span>
+                </div>
+                <span class="badge badge-pill badge-warning "><a href="{{ho.file.url}}" style="color: white; text-decoration:none;" download class="download"><i class="fa fa-cloud-download" aria-hidden="true"></i></a>
+
+                 <!-- <div style="margin-top: 5px;"></div> -->
+              </div>
+            </div>
+          </div>
+          {%empty%}
+          <div class="alert alert-primary " role="alert" style="background-color: white; border:1px solid #b8daff;">
+            Opps!!! Empty contact admin!! <a href="{%url 'contact'%}">Here</a>
+          </div>
+          {%endfor%}
+          {%elif books%}
+          {%for ho in books%}
+          <div class="col-sm-6 col-md-4 ">
+            <div class="box ">
+              <div class="img-box">
+                {% if ho.cover_img %}
+                <a href="{{pq.file.url}}"><img src="{{ho.cover_img.url}}" alt=""></a>
+                {%endif%}
+              </div>
+              <div class="detail-box">
+                <h5>
+                  {{ho.title}}
+                </h5>
+               <!--  <p>
+                  {{pq.about_book}}
+                </p> -->
+                 <div><span class="badge badge-pill badge-primary">Semester: {{ho.semester}}</span></div>
+                 <div><span class="badge badge-pill badge-primary">Year: {{ho.year}}</span></div>
+                 <div class="spinner-border " role="status" style="display: none;">
+                  <span class="sr-only"></span>
+                </div>
+                <span class="badge badge-pill badge-warning "><a href="{{ho.file.url}}" style="color: white; text-decoration:none;" download class="download"><i class="fa fa-cloud-download" aria-hidden="true"></i></a>
+
+                 <!-- <div style="margin-top: 5px;"></div> -->
+              </div>
+            </div>
+          </div>
+          {%empty%}
+          <div class="alert alert-primary " role="alert" style="background-color: white; border:1px solid #b8daff;">
+            Opps!!! No result for search!!! <a href="{%url 'contact'%}">Here</a>
+          </div>
+          {%endfor%}
+          {%endif%}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- end catagory section -->
+
+  
+<script></script>
+ {% endblock%}
+ <as
