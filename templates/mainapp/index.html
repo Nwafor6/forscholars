@@ -3,6 +3,32 @@
 {% block title%}Home{% endblock%}
 {%block content%}
     <!-- slider section -->
+    <style>
+      .card >img{
+        /*width: 285px;*/
+        height: 260px;
+        padding: 5px;
+        border-radius: 10px;
+      }
+      .heading_center{
+        margin: 0 auto;
+      }
+      .heading_center >h2{
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       width: 70%;
+
+      }
+      @media (max-width: 500px){
+        .heading_center >h2{
+          width: 100%;
+        }
+      }
+      .col-md-4 > .subscribers{
+        margin-bottom: 40px;
+      }
+    </style>
   <div id="slider_section">
     <section class="slider_section " style="background-image:linear-gradient(rgba(4, 9, 30, 0.7),rgba(4, 9, 30, 0.7)), url({%static 'images/bg.jpg'%})">
       <div id="customCarousel1" class="carousel slide" data-ride="carousel">
@@ -101,59 +127,51 @@
   <section class="catagory_section layout_padding">
     <div class="catagory_container">
       <div class="container ">
-        <div class="heading_container heading_center">
+        <div class="heading_container heading_center ">
           <h2>
-            Books Categories
+            We have provide a stress-free studies for you by sourcing different materials from your institution for you. 
           </h2>
           <p>
-            There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration
+            Free books download, Weekly store Updates, tested and trusted.
           </p>
         </div>
         <div class="row">
-          <div class="col-sm-6 col-md-4 ">
-            <div class="box ">
-              <div class="img-box">
-               <a href="{% url 'departments'%}"><img src="{% static 'images/cat1.png'%}" alt=""></a>
+          <div class="col-sm-12 col-md-6 col-lg-4 mb-3 " >
+            <div class="card shadow-sm" style="width: 18rem;">
+              <img src="{%static 'images/geo2.jpg'%}" class="card-img-top" alt="Text book png">
+              <div class="card-body">
+                <h5 class="card-title"> Textbooks</h5>
+                <p class="card-text">Download text books for your department and institution.Our team has worked hard to source for these materials and they have provided the for FREE!</p>
               </div>
-              <div class="detail-box">
-                <h5>
-                  Text Books
-                </h5>
-                <p>
-                 Books are the quietest and most constant of friends; they are the most accessible and wisest of counselors, and the most patient of teachers. <i> Charles W. Eliot</i>
-                </p>
+              <div class="card-body">
+                <a href="{% url 'departments'%}" class="card-link">Learn More</a>
               </div>
-            </div>
+           </div>
           </div>
-          <div class="col-sm-6 col-md-4" >
-            <div class="box ">
-              <div class="img-box">
-                <a href="{% url 'departments'%}"><img src="{%static 'images/cat2.png'%}" alt=""></a>
+          <div class="col-sm-12 col-md-6 col-lg-4 mb-3 " >
+            <div class="card shadow-sm" style="width: 18rem;">
+              <img src="{%static 'images/pq.jpg'%}" class="card-img-top" alt="Text book png">
+              <div class="card-body">
+                <h5 class="card-title">Past Questions</h5>
+                <p class="card-text">Prepare for your exams using our legit past questions. We have gathered past questions from your institution and department. Download for FREE!</p>
               </div>
-              <div class="detail-box">
-                <h5>
-                  Past Questions
-                </h5>
-                <p>
-                 Fill your house with stacks of books, in all the crannies and all the nooks. <i> Dr. Seuss</i>
-                </p>
+              <div class="card-body">
+                <a href="{% url 'departments'%}" class="card-link">Learn More</a>
               </div>
-            </div>
+           </div>
           </div>
-          <div class="col-sm-6 col-md-4 ">
-            <div class="box ">
-              <div class="img-box">
-                <a href="{% url 'departments'%}"><img src="{%static 'images/cat3.png'%}" alt=""></a>
+          <div class="col-sm-12 col-md-6 col-lg-4 mb-3 " >
+            <div class="card shadow-sm" style="width: 18rem; z-index: 9999999px;">
+              <img src="{%static 'images/ho.png'%}" class="card-img-top" alt="Text book png">
+              <div class="card-body">
+                <h5 class="card-title">Hand Outs</h5>
+                <p class="card-text">Our book store also contains handout for department.
+                Download both first and second semester handouts for your department from our books store.</p>
               </div>
-              <div class="detail-box">
-                <h5>
-                  Hand Outs
-                </h5>
-                <p>
-                  A book is a version of the world. If you do not like it, ignore it; or offer your own version in return. <i> Salman Rushdie</i>
-                </p>
+              <div class="card-body">
+                <a href="{% url 'departments'%}" class="card-link">Learn More</a>
               </div>
-            </div>
+           </div>
           </div>
         </div>
       </div>
@@ -162,7 +180,7 @@
 
   <!-- end catagory section -->
 
-  <!-- about section -->
+  <!-- whyus section -->
 
   <section class="about_section layout_padding">
     <div class="container ">
@@ -180,13 +198,31 @@
               </h2>
             </div>
             <p>
-              As an educational community, our teams members had passed through the education system of learning and have devoted time to selecting and providing relvant and standard materials for students. The team are majorly Geosciencists. We have made available Textbook, Journals, Past Questions and Hand Outs for different fields and levels  in Geosciences for students in Universities.
+              As an educational community, our teams have devoted time to selecting and providing relvant and standard materials for students with weekly update our elibrary. We have made available Textbook, Journals, Past Questions and Hand Outs for different fields and levels  any department, institution for all our memebers.
             </p>
             <a href="{%url 'category'%}">
               See Books
             </a>
           </div>
         </div>
+      </div>
+      <div class="row mt-5 text-center">
+        <div class="col-md-4">
+          <div class="subscribers">
+             <h2><strong>40.25k+</strong></h2>
+             <h2><strong>Members</strong></h2>
+           </div>
+        </div>
+        <div class="col-md-4">
+          <div class="subscribers">
+             <h2><strong>4.7k+</strong></h2>
+             <h2><strong>Online</strong></h2>
+           </div>
+        </div>
+        <div class="col-md-4">
+          
+        </div>
+  
       </div>
     </div>
   </section>
@@ -208,7 +244,7 @@
           <div class="client_container ">
             <div class="detail-box">
               <p>
-                Nwafor Glory is the founder of  4Scholars community. He is Geophysicist, a web developer and a writer. He is passionate about education and devloping others. He is a member and an excutive of Society of Exploration Geophyicist Nnamdi Azikiwe Students Chapter. He is also a member of AAPG, NAPE, NMGS, SPE and AEG. 
+                Nwafor Glory is the founder of  4Scholars community. He is Geophysicist, a web developer, graphics designer and a writer. He is passionate about education and devloping others.
               </p>
               <span>
                 <i class="fa fa-quote-left" aria-hidden="true"></i>
@@ -290,32 +326,31 @@
   <section class="blog_section layout_padding">
     <div class="container">
       <div class="heading_container heading_center">
-        <h2>
-          Latest Posts
-        </h2>
+        <h1>
+          News Room
+        </h1>
+        <div>
+          <h5 class="text-primary">
+            Latest News From SCHOOL, JAMB, ASUU, Post-UTME, WAEC, NECO, NABTEB, Scholarships Opportunities.
+          </h5>
+          <div class="categories"><strong><span style="color: red;">Categories:</span></strong>
+            <span class="badge badge-pill badge-secondary"><a href="" >JAMB</a></span><span class="badge badge-pill badge-secondary"><a href="">WAEC</a></span>
+            <span class="badge badge-pill badge-secondary"><a href="">ASUU</a></span><span class="badge badge-pill badge-secondary"><a href="">SCHOLARSHIPS</a></span>
+          </div>
       </div>
-      <div class="row">
-        {%for blog in blog%}
-        <div class="col-md-6">
-          <div class="box">
-            <div class="img-box">
-              {%if blog.blog_img%}
-              <img src="{{blog.blog_img.url}}" alt="">
-              {%endif%}
-              <h4 class="blog_date">
-                <span>
-                  {{blog.date_posted}}
-                </span>
-              </h4>
+      <div class="row mt-4">
+        {%for blog in blogs%}
+        <div class=" col-lg-3 col-md-4 col-sm-12 mb-2">
+          <div class="card shadow" style="height:540px; ">
+            {%if blog.blog_img%}
+            <img src="{{blog.blog_img.url}}" class="card-img-top img-fluid" alt="...">
+            {%endif%}
+            <div class="card-body">
+              <h5 class="card-title">{{blog.title}}</h5><hr>
+              <p class="card-text">{{blog.body|slice:":100"}}</p>
             </div>
-            <div class="detail-box">
-              <h5>
-                {{blog.title}}
-              </h5>
-              <p>
-                {{blog.body|slice:":400"}}
-              </p>
-              <a href="{%url '_blog' blog.slug%}">
+            <div class="card-footer">
+              <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div><a href="{%url '_blog' blog.slug%}">
                 Read More
               </a>
             </div>

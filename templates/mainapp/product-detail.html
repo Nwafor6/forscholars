@@ -1,0 +1,164 @@
+{% extends 'partials/base.html'%}
+{%load static%}
+{% load social_share %}
+{% block title%}Blog{% endblock%}
+{%block content%}
+<div/>
+<style>
+  .col-md-4 > img{
+    height: 100%;
+    width: 100%;
+  }
+  .no-gutters{
+    display: flex;
+    justify-content: center;
+  
+  }
+    .share-btn{
+    padding: 5px;
+    font-size: 20px;
+  }
+
+.blink{
+  animation: blinker 1s linear infinite;
+
+}
+.item-img img{
+  width: 200px;
+  height: 200px;
+}
+.item-body span{
+  background-color: red;
+  color: white;
+  border-radius: 40px;
+  padding: 4px;
+  margin: 5px;
+  font-size: 9px;
+  font-weight: bold;
+}
+.item{
+  display: flex;
+  flex-flow: row wrap;
+  gap: 30px;
+  margin-top: 15px;
+  padding: 10px;
+  font-size: 12px;
+}
+.pdt-dscr{
+  text-align: center;
+  padding: 10px;
+}
+.pdt-dscr >img{
+  width: 300px;
+  height: 300px;
+
+}
+
+
+@keyframes blinker{
+  50%{
+    opacity: 0;
+  }
+
+</style>
+
+  <!-- catagory section -->
+ <!-- <span class="badge badge-pill badge-warning"><a href="{{tb.file.url}}" style="color: white; text-decoration:none" download><i class="fa fa-cloud-download" aria-hidden="true"></i></a></span> -->
+  <section class="catagory_section layout_padding">
+    <div class="catagory_container">
+      <div class="container ">
+        <div>
+        <h2 class="text-center">Buy and Sell Items</h2>
+        <p>Buy and sell items online for <strong>FREE!</strong><br></p>
+         <p style="color:red">Items in this forum are apporved before displayed to potential buyers, but we still will like to warn you to make sure good are in good condition before making payments</p>
+         <p><a href="{%url 'advertise' %}" class="btn btn-secondary">Sell Item</a></p>
+      </div>
+        <div class="row ">
+          <div class="col-md-7 p-4 card mb-3">
+              <div class="item  shadow-sm">
+                <div class="item-img">
+                  <img src="{{item.product_cover_image.url}}" alt="{{item.prouct_name}} image">
+                </div>
+                <div class="item-body">
+                  <a href=""><h6>{{item.product_name}}</h6></a>
+                  <p>Price: <span>{{item.product_price}}</span></p>
+                  <p>Category: {{item.product_category}}</p>
+                  <p>Seller: {{user.email}} {{user.last_name}}</p>
+                  <p>Location: {{item.product_location}}</p>
+                  <p>Description: {{item.description}}</p>
+                  <p><small>Posted: {{item.posted_on|timesince}}</small></p>
+                </div>
+              </div>
+              <div class="contact-seller mt-3">
+                <h4>Contact: <button class="btn btn-success" disabled>{{user.phone}}</button></h4>
+              </div>
+              {%for image in images%}
+              <div class="pdt-dscr">
+                <img src="{{image.product_image.url}}" class="img-fluid" alt="{{iamge.product_name.prouct_name}}">
+              </div>
+              {%endfor%}<hr>
+              <div class="mt-3">
+                <h3 class="text-center">Related Items</h3>
+                {% for item in related%}
+                <div class="item  shadow-sm">
+                  <div class="item-img">
+                    <img src="{{item.product_cover_image.url}}" alt="{{item.prouct_name}} image">
+                  </div>
+                  <div class="item-body">
+                    <a href="{% url 'item-detail' item.pk %}"><h6>{{item.product_name}}</h6></a>
+                    <p>Price: <span>{{item.product_price}}</span></p>
+                    <p>Category: {{item.product_category}}</p>
+                    <p><small>Posted: {{item.posted_on|timesince}}</small></p>
+                  </div>
+                </div>
+                {%endfor%}
+              </div>
+          </div>
+          <div class="col-md-4">
+          <div class="row">
+            <div class="card bg-light mb-3" style="max-width: 18rem;">
+              <div class="card-header" style="background-color:#BBBDBF"><h6><strong>Forscholars Marketing Services</strong></h6></div>
+              <div class="card-body">
+               <div class="content">
+                  <p class="card-text">
+                  We can connect your business to potential buys and sellers. Our marketing services are top notche. Show you products to over our 40k+ user today by clicking the button to contact our marketing team. Earn as you learn...  </p>
+                  <p><a href="" class="btn btn-secondary blink">Advertise</a></p>
+               </div>
+               <div class="subscribers-online mt-2" style="display: flex; gap:35px; font-size:3px">
+                 <div class="subscribers">
+                   <h6><strong>40.25k</strong></h6>
+                   <h6><strong>Members</strong></h6>
+                 </div>
+                 <div class="subscribers">
+                   <h6><strong>4.7k</strong></h6>
+                   <h6><strong>Online</strong></h6>
+                 </div>
+               </div><hr>
+               <div class="footer">
+                 <p>created March 12 2022</p>
+                 <a href="{%url 'register'%}" class="btn btn-primary btn-md btn-block round" style="border-radius: 9999px;;">Join</a>
+               </div>
+              </div>
+            </div>
+            <div class="box mt-2" style="width: 286px;">
+              <h4 style="padding: 10px;">Related Posts</h4>
+              <div class="detail-box">
+                {%for blog in latest%}
+                <h5>
+                  <a href="{%url '_blog' blog.slug%}">{{blog.title}}</a><hr>
+                </h5>
+                  {%endfor%}
+              </div>
+             </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </section>
+  <!-- end catagory section -->
+
+ 
+
+ {% endblock%}
+ 

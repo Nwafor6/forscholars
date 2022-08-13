@@ -1,0 +1,38 @@
+{% extends 'partials/base.html'%}
+{%load static%}
+{% load social_share %}
+{%load crispy_forms_tags%}
+{% block title%}Blog{% endblock%}
+{%block content%}
+
+  <!-- blog section -->
+<style>
+
+
+</style>
+  <section class="blog_section layout_padding">
+    <div class="container form">
+      <h2 class="text-center mb-5">Upload Products to our market</h2>
+     <div class="row">
+       <div class="col-sm-12 col-lg-6">
+        <form method="post" enctype="multipart/form-data">
+        {%csrf_token%}
+        {{form|crispy}}
+        {{imageform|crispy}}
+        <button type="submit">
+          Submit
+        </button>
+      </form>
+       </div>
+     </div>
+     </div>
+    </div>
+  </section>
+
+  <!-- end blog section -->
+
+  
+
+  {% endblock%}
+  
+

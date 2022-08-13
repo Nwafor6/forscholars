@@ -17,19 +17,19 @@
           <form method="post">
             {%csrf_token%}
             <div>
-              <input type="text" placeholder="Name"  name="name">
+              <input type="text" placeholder="Name"  name="name" required>
             </div>
             <div>
-              <input type="email" placeholder="Email"  name="email">
+              <input type="email" placeholder="Email"  name="email" required>
             </div>
             <div>
-              <input type="text" placeholder="Phone Number" name="phone_no">
+              <input type="text" placeholder="Phone Number" name="phone_no" required>
             </div>
             <div>
-              <input type="text" class="message-box" placeholder="message" name="message">
+              <input type="text" class="message-box" placeholder="message" name="message" required>
             </div>
             <div class="btn-box">
-              <button>
+              <button type="submit">
                 SEND
               </button>
             </div>

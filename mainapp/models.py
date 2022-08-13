@@ -8,7 +8,8 @@ year_category=[
 	('Year-1', 'Year-1'),
 	('Year-2', 'Year-2'),
 	('Year-3', 'Year-3'),
-	('Year-4', 'Year-4')
+	('Year-4', 'Year-4'),
+	('Year-5', 'Year-5'),
 ]
 semester_category=[
 	('First', 'First'),
@@ -19,14 +20,27 @@ type_category=[
 	('Past Questions', 'Past Questions'),
 	('Hand Outs', 'Hand Outs'),
 ]
-faculty_category=[
-	('Physical Sciences', 'Physical Sciences'),
-	('Bio Sciences', 'Bio Sciences'),
-]
+
+class School(models.Model):
+	school_name=models.CharField(max_length=200, unique=True)
+	slug=models.SlugField()
+	logo=models.ImageField(null=True, blank=True)
+
+	def __str__(self):
+		return self.school_name
+
+	def save(self, *args, **kwargs):
+		if not self.slug:
+			self.slug=slugify(self.school_name)
+		super(School, self).save(*args,**kwargs)
+
+
+
 class Department(models.Model):
+	school=models.ForeignKey(School, models.SET_NULL, null=True, blank=True)
 	title=models.CharField(max_length=200)
 	cover_img=models.ImageField(blank=True, null=True)
-	faculty=models.CharField(max_length=20, choices=faculty_category)
+	faculty=models.CharField(max_length=50)
 	slug=models.SlugField()
 
 	class Meta:
@@ -36,7 +50,7 @@ class Department(models.Model):
 		return self.title
 
 	def save(self, *args, **kwargs):
-		if not self.title:
+		if not self.slug:
 			self.slug=slugify(self.title)
 		super(Department, self).save(*args,**kwargs)
 
@@ -60,8 +74,8 @@ class BookCategory(models.Model):
 		return self.title
 
 	def save(self, *args, **kwargs):
-		if not self.title:
-			self.slug=slugify(self.title)
+		if not self.slug:
+			self.slug=slugify(self.title+self.id)
 		super(BookCategory, self).save(*args,**kwargs)
 
 
@@ -116,3 +130,52 @@ class Newsletter(models.Model):
 		return self.email
 
 
+# adverts 
+class ProductCategory(models.Model):
+	title=models.CharField(max_length=50)
+
+	class Meta:
+		verbose_name_plural=('Product Categories')
+
+	def __str__(self):
+		return self.title
+STATUS=[
+	('verified','verified'),
+	('pending','pending'),
+	('rejected','rejected'),
+]
+
+class Advert(models.Model):
+	user=models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+	product_category=models.ForeignKey(ProductCategory, on_delete=models.CASCADE)
+	product_name=models.CharField(max_length=50)
+	slug=models.SlugField(blank=True, null=True)
+	product_price=models.PositiveIntegerField()
+	product_cover_image=models.ImageField(upload_to='product-images')
+	description=models.CharField(max_length=300)
+	status=models.CharField(max_length=50, choices=STATUS, default='pending')
+	product_quantity=models.PositiveIntegerField()
+	product_location=models.CharField(max_length=100)
+	# contact=models.CharField(max_length=60, null=True,blank=True)
+	posted_on=models.DateTimeField(auto_now_add=True)
+	clicks=models.IntegerField(default=0)
+
+	def __str__(self):
+		return self.product_name
+
+	def save(self, *args, **kwargs):
+		if not self.slug:
+			self.slug=slugify(self.product_name)
+		super(Advert, self).save(*args,**kwargs)
+
+	@property
+	def images(self):
+		"""return all list of all uploaded images"""
+		return self.avertimages_set.all() 
+
+class AdvertImages(models.Model):
+	product_image=models.ImageField(null=True, blank=True, upload_to='product-images')
+	advert=models.ForeignKey(Advert, on_delete=models.CASCADE)
+
+	def __str__(self):
+		return f"{self.advert.product_name} images"

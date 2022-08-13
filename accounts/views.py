@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib import messages
+from django.contrib.messages import get_messages
 from .models import CustomUser as User, Profile
 from django.contrib.auth import authenticate, login, logout
 from .forms import (CustomUserCreationForm,
@@ -21,13 +22,15 @@ def profileUpdate(request):
 	if request.user.is_authenticated:
 		profile =Profile.objects.get(user=request.user)
 		form=ProfileUpdateForm(instance=profile)
+		email_form=CustomUserChangeForm(instance=profile.user)
 		if request.method == 'POST':
 			form=ProfileUpdateForm(request.POST,request.FILES,instance=profile)
-			if form.is_valid():
+			email_form=CustomUserChangeForm(request.POST,instance=profile.user)
+			if form.is_valid() & email_form.is_valid():
 					form.save()
+					email_form.save()
 			return redirect('profile')
-	return render(request, 'accounts/register_login.html', {'form':form, 'page':page})
-
+	return render(request, 'accounts/register_login.html', {'form':form, 'page':page, 'email_form':email_form})
 
 
 def loginView(request):
@@ -39,14 +42,14 @@ def loginView(request):
 		try:
 			user = User.objects.get(email=email)
 		except:
-			return HttpResponse('Incorrect Uername or password')
+			messages.error(request, 'User does not exits')
 		user= authenticate(request, email=email, password=password)
 		if user is not None:
 			login(request, user)
 			return redirect('home')
 		else:
-			return HttpResponse('error')
-	return render(request, 'accounts/register_login.html', {'page':page})	
+			messages.error(request, 'or username or password incorrect')
+	return render(request, 'accounts/register_login.html', {'page':page} )	
 
 def registrationView(request):
 	page='reg'

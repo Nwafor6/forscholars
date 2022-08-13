@@ -27,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config("DJANGO_SECRET_KEY",default='django-insecure-+*@pchsapa@$taympvh^a6ro5-31lg+j6b18ytjvbq_jwbg+my')
 # print(SECRET_KEY, "\n")
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config("DJANGO_DEBUG",default=False, cast=bool)
+DEBUG = config("DJANGO_DEBUG",default=True, cast=bool)
 # print(DEBUG,"\n")
 ALLOWED_HOSTS = ['forscholars.herokuapp.com', 'localhost', '127.0.0.1']
 
@@ -78,6 +78,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'mainapp.context_processors.ads',
+                # 'mainapp.context_processors.read_also',
             ],
         },
     },
@@ -158,3 +160,22 @@ django_heroku.settings(locals())
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST='smtp.gmail.com'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT=587
+EMAIL_USE_TLS=True
+EMAIL_HOST_USER='nwaforglory6@gmail.com'
+EMAIL_HOST_PASSWORD=config('EMAIL_HOST_PASSWORD')
+
+
+AWS_ACCESS_KEY=config('AWS_ACCESS_KEY')
+AWS_SECRET_KEY=config('AWS_SECRET_KEY')
+AWS_STORAGE_BUCKET_NAME='forscholars'
+AWS_S3_FILE_OVERWRITE=False
+AWS_DEFAULT_ACL=None
+AWS_DEFAULT_ACL='public-read'
+AWS_S3_CUSTOM_DOMAIN='%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+DEFAULT_FILE_STORAGE='storages.backends.s3boto3.S3Boto3Storage'

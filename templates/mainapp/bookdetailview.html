@@ -1,0 +1,167 @@
+{% extends 'partials/base.html'%}
+{%load static%}
+{% load social_share %}
+{% block title%}Home{% endblock%}
+{%block content%}
+<style>
+  .col-md-4 > img{
+    height: 100%;
+    width: 100%;
+  }
+  .no-gutters{
+    display: flex;
+    justify-content: center;
+  
+  }
+    .share-btn{
+    padding: 5px;
+    font-size: 20px;
+  }
+
+ .Geekymalik-Ads {
+     position:relative;
+     bottom: 0px;
+     left: 0;
+     width: 100%;
+     padding: 5px 5px;
+     box-shadow: 0 -6px 18px 0 rgba(9,32,76,.1);
+     -webkit-transition: all .1s ease-in;
+     transition: all .1s ease-in;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     background-color: #fefefe;
+     z-index: 20;
+}
+ .Geekymalik-Ads-close {
+     width: 30px;
+     height: 30px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     border-radius: 12px 0 0;
+     position: absolute;
+     right: 0;
+     top: -30px;
+     background-color: #fefefe;
+     box-shadow: 0 -6px 18px 0 rgba(9,32,76,.08);
+}
+ .Geekymalik-Ads .Geekymalik-Ads-close svg {
+     width: 22px;
+     height: 22px;
+     fill: #000;
+}
+ .Geekymalik-Ads .Geekymalik-Ads-content {
+     overflow: hidden;
+     display: block;
+     position: relative;
+     height: auto;
+     width: 100%;
+}
+.blink{
+  animation: blinker 1s linear infinite;
+  font-size: 30px;
+}
+
+@keyframes blinker{
+  50%{
+    opacity: 0;
+  }
+</style>
+
+  <!-- catagory section -->
+ <!-- <span class="badge badge-pill badge-warning"><a href="{{tb.file.url}}" style="color: white; text-decoration:none" download><i class="fa fa-cloud-download" aria-hidden="true"></i></a></span> -->
+  <section class="catagory_section layout_padding">
+    <div class="catagory_container">
+      <div class="container ">
+        <div class="row">
+          <div class="col-md-7">
+            <div class="card mb-3" style="max-width: 540px;">
+              <img src="{{book.cover_img.url}}" alt="{{book.title}} image" class="img-fluid">
+              <div class="col-md-12">
+                <div class="card-body">
+                  <h5 class="card-title">{{book.title}}</h5>
+                  <p class="card-text"> <strong style="color: red">Book info : </strong>This book is a  <mark>{{book.semester}}</mark> semester <mark>{{book.file_type}}</mark> for <mark>{{book.year}}</mark> studets in the department of <mark>{{book.department}}</mark> in <mark>{{book.department.school}}</mark></p>
+                  <p class="card-text">{{book.about_book}}</p>
+                  <p>Download <span class="badge badge-pill badge-warning"><a href="{{book.file.url}}" style="color: white; text-decoration:none" download><i class="fa fa-cloud-download blink" aria-hidden="true"></i></a></span></p>
+                  <p class="card-text"><small class="text-muted">Posted: {{book.posted_on}}</small></p>
+                   {%if x_advert%}
+                     <div class='Geekymalik-Ads jhfdiuh0 ' id='Geekymalik-Ads' >
+                       <div class='Geekymalik-Ads-close' onclick='document.getElementById("Geekymalik-Ads").style.display="none"'>
+                          <svg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'>
+                             <path d='M278.6 256l68.2-68.2c6.2-6.2 6.2-16.4 0-22.6-6.2-6.2-16.4-6.2-22.6 0L256 233.4l-68.2-68.2c-6.2-6.2-16.4-6.2-22.6 0-3.1 3.1-4.7 7.2-4.7 11.3 0 4.1 1.6 8.2 4.7 11.3l68.2 68.2-68.2 68.2c-3.1 3.1-4.7 7.2-4.7 11.3 0 4.1 1.6 8.2 4.7 11.3 6.2 6.2 16.4 6.2 22.6 0l68.2-68.2 68.2 68.2c6.2 6.2 16.4 6.2 22.6 0 6.2-6.2 6.2-16.4 0-22.6L278.6 256z'/>
+                          </svg>
+                       </div>
+                       <div class='Geekymalik-Ads-content'>
+                          <center style="display:inline-block;width:100%;height:90px">
+                             
+                        <!-- *Show your product from database here* -->
+
+                     
+                         
+                          <img src="{{x_advert.product_image.url}}" alt="hsdjgzb" class="img-fluid">
+                          </center>
+                       </div>
+                    </div>
+                  {%endif%}
+                </div>
+              </div>
+            </div>
+            <div class="share mt-4">
+            <p><strong><span style="color: red;">Share Book :</span> Thank you for downloading. If you find this book helpful, please share to help someone else also. Use any of your favourite channels below. </strong></p>
+            <p><strong><span style="color: red;">Share Book :</span><span class="share-btn">{% post_to_facebook object_or_url "<p style='color: green;'>facebook</p>" %}</span> 
+              <span class="share-btn">{% post_to_whatsapp object_or_url "Share via WhatsApp" %} </span>
+              <span class="share-btn">{% post_to_telegram "New article: {{blog.title}}" object_or_url %}</span>
+              <span class="share-btn">{% post_to_linkedin object_or_url %}</span>
+              <span class="share-btn">{% post_to_twitter "New Song: {{object.title}}. Check it out!" object_or_url "Post to Twitter" %}</span>
+            </strong></p>
+            <p><strong class="text-light bg-dark p-1">You are what keeps us going. Thank you!!</strong></p>
+          </div>
+           </div>
+            <div class="col-md-4">
+              <div class="row">
+                <div class="card bg-light mb-3" style="max-width: 18rem;">
+                  <div class="card-header" style="background-color:#BBBDBF"><h6>About community</h6></div>
+                  <div class="card-body">
+                   <div class="content">
+                      <h5 class="card-title">forscholars</h5>
+                      <p class="card-text">We are an educational community, we are interested in bringing out the best of you in your acadmics.</p>
+                   </div>
+                   <div class="subscribers-online mt-2" style="display: flex; gap:35px; font-size:3px">
+                     <div class="subscribers">
+                       <h6><strong>40.25k</strong></h6>
+                       <h6><strong>Members</strong></h6>
+                     </div>
+                     <div class="subscribers">
+                       <h6><strong>4.7k</strong></h6>
+                       <h6><strong>Online</strong></h6>
+                     </div>
+                   </div><hr>
+                   <div class="footer">
+                     <p>created March 12 2022</p>
+                     <a href="{%url 'register'%}" class="btn btn-primary btn-md btn-block round" style="border-radius: 9999px;;">Join</a>
+                   </div>
+                  </div>
+                </div>
+                <div class="box mt-2 shadow p-1" style="width: 286px;">
+                  <h4 style="padding: 10px;">Related Books</h4>
+                  <div class="detail-box">
+                    {%for book in related%}
+                    <h5>
+                      <a href="{%url 'books' book.slug%}">{{book.title}}</a><hr>
+                    </h5>
+                      {%endfor%}
+                  </div>
+                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </section>
+  <!-- end catagory section -->
+
+ 
+
+ {% endblock%}
+ 

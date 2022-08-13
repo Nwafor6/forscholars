@@ -1,5 +1,5 @@
 from  django import forms
-from .models import Comment
+from .models import Comment, Advert, AdvertImages
 
 
 class CommentUpdateForm(forms.ModelForm):
@@ -7,3 +7,10 @@ class CommentUpdateForm(forms.ModelForm):
 	class Meta:
 		model=Comment
 		fields=['message']
+
+class AdvertForm(forms.ModelForm):
+	images=forms.ImageField(widget=forms.FileInput(attrs={"multiple":"True",}),required=False, label='Product images', help_text='You can upload multile images')
+	class Meta:
+		model=Advert
+		fields=['product_name','product_category','product_price','product_cover_image','description','product_quantity','product_location']
+

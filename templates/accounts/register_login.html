@@ -54,7 +54,10 @@
         {% csrf_token%}
         {{form.media}}
         {{form|crispy}}
-        <button type="submit"class="btn btn-outline-primary"><i class="fa fa-floppy-o" aria-hidden="true" style="font-size: 31px;"></i></button>
+        {{email_form|crispy}}
+        <div>
+          <button type="submit"class="btn btn-outline-primary mt-3"><i class="fa fa-floppy-o" aria-hidden="true" style="font-size: 31px;"></i></button>
+        </div>
       </form>
       <div class="logo"><h6 class="text-right" style="font-size: 11px;">4Scholars</h6></div>
    </div>

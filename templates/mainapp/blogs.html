@@ -2,7 +2,22 @@
 {%load static%}
 {% block title%}Blog{% endblock%}
 {%block content%}
-
+<style >
+  .badge{
+    margin-left: 20px;
+  }
+  .badge a{
+    color: white;
+    padding: 5px;
+  }
+  .card >img{
+  
+    height: 258px;
+  }
+  .card{
+    height: 540px;
+  }
+</style>
   <!-- blog section -->
 
   <section class="blog_section layout_padding">
@@ -12,44 +27,25 @@
           News Room
         </h1>
         <div>
-          <h4 class="text-primary">
+          <h5 class="text-primary">
             Latest News From SCHOOL, JAMB, ASUU, Post-UTME, WAEC, NECO, NABTEB, Scholarships Opportunities.
-          </h4>
+          </h5>
+          <div class="categories"><strong><span style="color: red;">Categories:</span></strong>
+            <span class="badge badge-pill badge-secondary"><a href="" >JAMB</a></span><span class="badge badge-pill badge-secondary"><a href="">WAEC</a></span>
+            <span class="badge badge-pill badge-secondary"><a href="">ASUU</a></span><span class="badge badge-pill badge-secondary"><a href="">SCHOLARSHIPS</a></span>
+          </div>
         </div>
       </div>
-      <div class="row">
+      <div class="row mt-4">
         {%for blog in blogs%}
         <div class=" col-lg-3 col-md-4 col-sm-12 mb-2">
-          <!-- <div class="box">
-            <div class="img-box">
-              {%if blog.blog_img%}
-              <img src="{{blog.blog_img.url}}" alt="">
-              {%endif%}
-              <h4 class="blog_date">
-                <span>
-                  {{blog.date_posted}}
-                </span>
-              </h4>
-            </div>
-            <div class="detail-box">
-              <h5>
-                {{blog.title}}
-              </h5>
-              <p>
-                {{blog.body|slice:":200"}}
-              </p>
-              <a href="{%url '_blog' blog.slug%}">
-                Read More
-              </a>
-            </div>
-          </div> -->
           <div class="card">
             {%if blog.blog_img%}
-            <img src="{{blog.blog_img.url}}" class="card-img-top" alt="...">
+            <img src="{{blog.blog_img.url}}" class="card-img-top img-fluid" alt="...">
             {%endif%}
             <div class="card-body">
               <h5 class="card-title">{{blog.title}}</h5><hr>
-              <p class="card-text">{{blog.body|slice:":140"}}</p>
+              <p class="card-text">{{blog.body|slice:":100"}}</p>
             </div>
             <div class="card-footer">
               <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div><a href="{%url '_blog' blog.slug%}">
@@ -60,6 +56,7 @@
         </div>
         {%endfor%}
       </div>
+    </div>
     </div>
   </section>
 

@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
+from django.core.paginator import Paginator 
 from django.urls import reverse
-from accounts.models import Profile
-from .models import BookCategory, Department, ContactUs, Blog, Comment, Newsletter
-from .forms  import CommentUpdateForm
+from accounts.models import Profile, CustomUser as User
+from .models import BookCategory, Department, ContactUs, Blog, Comment, Newsletter, Advert, ProductCategory, School, AdvertImages
+from .forms  import CommentUpdateForm, AdvertForm
 from django.views.generic import ListView,DetailView
+from django.views.generic.edit import CreateView
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 import random
@@ -27,9 +29,9 @@ def blog(request):
 
 def blog_detail(request, slug):
 	blog=Blog.objects.get(slug=slug)
-	blogs=blog.user
-	autor=Profile.objects.get(user=blogs)
-	print(autor.bio) 
+	slug=blog
+	# blogs=blog.user
+	# autor=Profile.objects.get(user=blogs)
 	latest=Blog.objects.all()[:4]
 	comment=blog.comment_set.all()
 	if request.method=='POST':
@@ -44,6 +46,8 @@ def blog_detail(request, slug):
 		else:
 			return redirect('login')
 	return render (request, 'mainapp/blog.html', {'blog':blog, 'latest':latest, 'comment':comment})
+	
+
 
 def update_comment(request, pk):
 	comment=Comment.objects.get(pk=pk)
@@ -82,6 +86,32 @@ class DepartmentView(ListView):
 	model=Department
 	template_name='mainapp/departments.html'
 	context_object_name='departments'
+
+	# def get_context_data(self, *args, **kwargs):
+	# 	context=super().get_context_data(**kwargs)
+	# 	context['school']=School.objects.all()
+	# 	context['departments']=Department.objects.all()
+	# 	return context
+def filter_processing(request):
+	if request.method=='GET':
+		q=request.GET.get('q')
+		print(q)
+		if len(q)!=0:
+			if q =='All':
+				return redirect ('departments')
+			school=School.objects.get(school_name=q)
+			filter_result=school.department_set.all()
+			print(filter_result)
+			return render( request,'mainapp/departments.html', {'filter_result':filter_result})
+	else:
+		return redirect ('departments')
+
+def bookdetailview(request, slug):
+	book=BookCategory.objects.get(slug=slug)
+	related=book.department
+	related=BookCategory.objects.filter(department=related)
+	print(related)
+	return render (request, 'mainapp/bookdetailview.html', {'book':book, 'related':related})
 
 
 def dept_PQ_detail(request,slug):
@@ -131,7 +161,7 @@ def search(request):
 	if request.method== 'GET':
 		q=request.GET.get('q') 
 		if len(q)==0:
-			return HttpResponse("<div class ='alert alert-primary' role ='alert'> A simple primary alert with <a href='' class='alert-link'>an example link</a>. Give it a click if you like.</div>")
+			return redirect('departments')
 
 	# else:
 		
@@ -141,11 +171,52 @@ def search(request):
 def newsletter(request):
 	message='susbscribed'
 	if request.method=='POST':
-		subscribe=Newsletter.objects.create(email=request.POST.get('email'))
-		subscribe.save()
+		try:
+			email=Newsletter.objects.get(email=request.POST.get('email'))
+			return HttpResponse('Already a subscriber! Enter a different email')
+		except:
+			subscribe=Newsletter.objects.create(email=request.POST.get('email'))
+			subscribe.save()
 	return render(request, 'mainapp/susbscribe.html',{'message':message})
 
-	
+#advert view
+class AdvertView(CreateView):
+	form_class=AdvertForm
+	model=Advert
+	success_url='home'
+	template_name='mainapp/advertform.html'
+
+	def post(self,request, *args, **kwargs):
+		form=AdvertForm(request.POST, request.FILES)
+		user=request.user
+		if form.is_valid():
+			data=form.cleaned_data
+			owner=form.save(commit=False)
+			owner.user=user
+			owner.save()
+			images=request.FILES.getlist('images')
+			if images:
+				for  image in images:
+					product_images=AdvertImages.objects.create(advert=owner, product_image=image)
+					product_images.save()
+			return redirect(self.success_url)
+		return render (request, self.template_name)
+
+def advert_list(request):
+	advert=Advert.objects.all()
+	paginator = Paginator(advert, 5) # Show 25 contacts per page.
+	page_number = request.GET.get('page') 
+	page_obj = paginator.get_page(page_number) 
+	return render(request, 'mainapp/buy-items.html', {'advert':advert, 'paginator':paginator, 'page_number':page_number, 'page_obj':page_obj})
+
+def advert_detail(request,pk):
+	item=Advert.objects.get(pk=pk)
+	user=item.user
+	print(user)
+	related=item.product_category
+	images=item.advertimages_set.all()[:4]
+	related=Advert.objects.filter(product_category=related)
+	return render(request, 'mainapp/product-detail.html', {'item':item,'user':user, 'images':images, 'related':related})
 
 def handler404(request, exception):
     return render(request, 'mainapp/404.html', status=404)

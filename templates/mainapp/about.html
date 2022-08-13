@@ -2,7 +2,15 @@
 {%load static%}
 {% block title%}About{% endblock%}
 {%block content%}
-
+<style>
+  .fa{
+    color: white;
+    font-size: 10px;
+  }
+  .author-contact span{
+    margin: 5px;
+  }
+</style>
   <!-- about section -->
 
   <section class="about_section layout_padding">
@@ -11,6 +19,18 @@
         <div class="col-md-6">
           <div class="img-box">
             <img src="{% static 'images/me.jpg'%}" alt="" style="border-radius: 100%;">
+          </div>
+           <div class="author-contact text-center mt-3">
+            <span class="badge badge-pill badge-secondary"> <a href="https://api.whatsapp.com/message/BYABDU4RMAJUO1" target="blank">
+              <i class="fa fa-whatsapp" aria-hidden="true"></i>
+              </a></span><span class="badge badge-pill badge-secondary"><a href="">
+                <i class="fa fa-linkedin" aria-hidden="true"></i>
+              </a></span>
+            <span class="badge badge-pill badge-secondary"><a href="https://twitter.com/southeastdev" target="_blank">
+                <i class="fa fa-twitter" aria-hidden="true"></i>
+              </a></span><span class="badge badge-pill badge-secondary"><a href="">
+                <i class="fa fa-facebook" aria-hidden="true"></i>
+              </a></span>
           </div>
         </div>
         <div class="col-md-6">
@@ -21,10 +41,10 @@
               </h2>
             </div>
              <p>
-              Success is not achieve only by confessing and praying but with hard work, grit and resislent <i>Christian Glory</i>..
+              Success is not achieve only by confessing and praying but with hard work, grit and resislent.
             </p>
             <p>
-              <b>4scholars</b> community, is an idea of a young Geosciencist and an educationist, who is intrested in the acadmic excellence of young Geoscience students especially students in developing countries. As an educational community we are interested in bringing out the best of you in your acadmics. We have weekly blog posts on various education topics and have provided various materials for exam and self development purposes. 
+              <b>4scholars</b> community, is an idea of a young Geosciencist and an educationist, who is intrested in the acadmic excellence of young students especially students in developing countries. As an educational community we are interested in bringing out the best in you concerning your acadmics. We have weekly blog posts on various education topics and news and have provided various materials for exam and self development purposes. We also update our elibrary weekly to keep it up-to-date.  
             </p>
              <a href="{%url 'contact'%}">
               contact us

@@ -14,6 +14,12 @@ class CustomUserCreationForm(UserCreationForm):
 
 
 class CustomUserChangeForm(UserChangeForm):
+    email= forms.EmailField(max_length = 50 ,widget=forms.TextInput(attrs={'placeholder':'@example.com'}))
+    def __init__(self, *args, **kwargs):
+        super(CustomUserChangeForm, self).__init__(*args, **kwargs)
+        ## remove label from each of the fields
+        for f in self.fields.keys():
+            self.fields[f].help_text=''
     class Meta:
         model = CustomUser
         fields = ["email"]
