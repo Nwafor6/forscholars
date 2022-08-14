@@ -169,7 +169,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT=587
 EMAIL_USE_TLS=True
 EMAIL_HOST_USER='nwaforglory6@gmail.com'
-EMAIL_HOST_PASSWORD=env('EMAIL_HOST_PASSWORD')
+EMAIL_HOST_PASSWORD='qjkcabzjrvxqpxsa'
 print(EMAIL_HOST_PASSWORD, '....')
 
 
