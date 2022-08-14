@@ -6,11 +6,29 @@ from .models import Profile
 
 from django.contrib.auth.forms import UserChangeForm, UserCreationForm
 
+# def __init__(self, *args, **kwargs):
+#             super(LearnerSignUpForm, self).__init__(*args, **kwargs)
+
+#             for fieldname in ['username', 'password1', 'password2']:
+#                 self.fields[fieldname].help_text = None  
+
 
 class CustomUserCreationForm(UserCreationForm):
+
     class Meta:
         model = CustomUser
         fields = ["email"]
+
+    def __init__(self, *args, **kwargs):
+        super(CustomUserCreationForm, self).__init__(*args,**kwargs)
+
+        for fieldname in ['password1', 'password2']:
+            self.fields[fieldname].help_text=None
+
+        for f in ['password2']:
+            self.fields[f].label='Confirm Password'
+            
+
 
 
 class CustomUserChangeForm(UserChangeForm):

@@ -40,7 +40,7 @@
               </div> -->
               <div class="detail-box">
                 <h5>
-                  {{pq.course_code}}
+                  <a href="{%url 'books' pq.slug%}">{{pq.title}}</a>
                 </h5>
                <!--  <p>
                   {{pq.about_book}}
@@ -98,7 +98,7 @@
               </div> -->
               <div class="detail-box">
                 <h5>
-                  {{ho.title}}
+                  <a href="{%url 'books' ho.slug%}">{{ho.title}}</a>
                 </h5>
                <!--  <p>
                   {{pq.about_book}}
