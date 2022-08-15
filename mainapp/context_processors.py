@@ -10,7 +10,7 @@ import random
 def ads(request):
 	pks =Advert.objects.filter(status='verified')
 	pks=[i.pk for i in pks]
-	#ads=random.choice(pks)
+	ads=random.choice(pks)
 	print(ads),
 	# for homepage
 	blogs=Blog.objects.all()
