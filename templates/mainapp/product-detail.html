@@ -70,7 +70,7 @@
         <div>
         <h2 class="text-center">Buy and Sell Items</h2>
         <p>Buy and sell items online for <strong>FREE!</strong><br></p>
-         <p style="color:red">Items in this forum are apporved before displayed to potential buyers, but we still will like to warn you to make sure good are in good condition before making payments</p>
+         <p style="color:red">Items in this forum are apprved before displayed to potential buyers, but we still will like to warn you to make sure good are in good condition before making payments</p>
          <p><a href="{%url 'advertise' %}" class="btn btn-secondary">Sell Item</a></p>
       </div>
         <div class="row ">
@@ -83,14 +83,14 @@
                   <a href=""><h6>{{item.product_name}}</h6></a>
                   <p>Price: <span>{{item.product_price}}</span></p>
                   <p>Category: {{item.product_category}}</p>
-                  <p>Seller: {{user.email}} {{user.last_name}}</p>
+                  <p>Seller: {{user.first_name}} {{user.last_name}} | {{user.email}} </p>
                   <p>Location: {{item.product_location}}</p>
                   <p>Description: {{item.description}}</p>
                   <p><small>Posted: {{item.posted_on|timesince}}</small></p>
                 </div>
               </div>
               <div class="contact-seller mt-3">
-                <h4>Contact: <button class="btn btn-success" disabled>{{user.phone}}</button></h4>
+                <h4>Contact: <button class="btn btn-success" disabled>{{item.contact}}</button></h4>
               </div>
               {%for image in images%}
               <div class="pdt-dscr">

@@ -17,7 +17,7 @@ class CustomUserCreationForm(UserCreationForm):
 
     class Meta:
         model = CustomUser
-        fields = ["email"]
+        fields = ["email", 'first_name', 'last_name']
 
     def __init__(self, *args, **kwargs):
         super(CustomUserCreationForm, self).__init__(*args,**kwargs)
@@ -27,7 +27,7 @@ class CustomUserCreationForm(UserCreationForm):
 
         for f in ['password2']:
             self.fields[f].label='Confirm Password'
-            
+
 
 
 
@@ -45,4 +45,4 @@ class CustomUserChangeForm(UserChangeForm):
 class ProfileUpdateForm(forms.ModelForm):
 	class Meta:
 		model=Profile
-		fields=["profile_img", "first_name", "last_name", "department", "phone","bio"]
+		fields=["profile_img", "department", "phone","bio"]
