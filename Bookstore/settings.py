@@ -31,7 +31,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config("DJANGO_SECRET_KEY",default='django-insecure-+*@pchsapa@$taympvh^a6ro5-31lg+j6b18ytjvbq_jwbg+my')
 # print(SECRET_KEY, "\n")
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True #config("DJANGO_DEBUG",default=True, cast=bool)
+DEBUG = config("DJANGO_DEBUG",default=True, cast=bool)
 # print(DEBUG,"\n")
 ALLOWED_HOSTS = ['forscholars.herokuapp.com', 'localhost', '127.0.0.1']
 
@@ -175,8 +175,8 @@ EMAIL_HOST_USER='nwaforglory6@gmail.com'
 EMAIL_HOST_PASSWORD=env('EMAIL_HOST_PASSWORD')
 
 
-#AWS_ACCESS_KEY=config('AWS_ACCESS_KEY')
-#AWS_SECRET_KEY=config('AWS_SECRET_KEY')
+AWS_ACCESS_KEY=config('AWS_ACCESS_KEY')
+AWS_SECRET_KEY=config('AWS_SECRET_KEY')
 AWS_STORAGE_BUCKET_NAME='forscholars'
 AWS_S3_FILE_OVERWRITE=False
 AWS_DEFAULT_ACL=None
