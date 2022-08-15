@@ -3,6 +3,29 @@
 {%load crispy_forms_tags%}
 {% block title%}{% if page == 'reg' %}Register{%elif page == 'sign_in' %}Sign In {%elif page == 'profile'%}Profile {%else%}logout{%endif%}{% endblock%}
 {%block content%}
+<style>
+  .form-group,form{
+    position: relative;
+  }
+ .login-eye{
+  position: absolute;
+  top: 40px;
+  right: 10px;
+  cursor: pointer;
+ }
+ .reg-eye1{
+  position: absolute;
+  top: 125px;
+  right: 10px;
+  cursor: pointer;
+ }
+ .reg-eye2{
+  position: absolute;
+  top: 210px;
+  right: 10px;
+  cursor: pointer;
+ }
+</style>
 
   
 
@@ -15,9 +38,10 @@
    <div class="register_bg shadow reg-alone ">
     <h5 class="text-center">Join 4Scholars</h5>
     <p>Fill your details, hit submit and see magic <i class="fa fa-smile-o" aria-hidden="true"></i><i class="fa fa-smile-o" aria-hidden="true"></i><i class="fa fa-smile-o" aria-hidden="true"></i><i class="fa fa-smile-o" aria-hidden="true"></i></p>
-      <form method="post">
+      <form method="post" class="form">
         {% csrf_token%}
-        {{form|crispy}}
+        {{form|crispy}}<i class="fa fa-eye reg-eye reg-eye1" id="reg-password"></i>
+        <i class="fa fa-eye reg-eye2 reg-eye" id="reg-password3"></i>
         <input type="submit" value="Register" class="btn btn-outline-primary">
       </form>
       <div class="sign-in"><a href="{%url 'login'%}" >Sign in</a></div>
@@ -38,12 +62,14 @@
         </div>
         <div class="form-group">
           <label for="exampleInputPassword1">Password</label>
-          <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+          <input type="password" class="form-control" id="exampleInputPassword1" name="password" class="Password">
+          <i class="fa fa-eye login-eye" id="show-password"></i>
         </div>
         <input type="submit" value="Login" class="btn btn-outline-primary">
       </form>
       <div class="sign-in"><a href="{% url 'register'%}" >Register</a></div>
       <div class="logo"><h6 class="text-right" style="font-size: 11px;">4Scholars</h6></div>
+      <small><a href="{%url 'password_reset'%}">Foget Password?</a></small>
     </div>
     <!-- End Register -->
     <!-- Update Profile -->
@@ -76,7 +102,37 @@
 
   <!-- end catagory section -->
 
- 
+ <script>
+   const showPassword=document.querySelector('#show-password');
+   const password= document.querySelector('#exampleInputPassword1');
+   showPassword.addEventListener('click', function(e){
+    console.log('hello');
+    const type = password.getAttribute('type')==='password' ? 'text' : 'password';
+    password.setAttribute('type', type);
+    this.classList.toggle('fa-eye-slash');
+   })
+ </script>
+ <!-- for register -->
+ <script>
+   const showPassword2=document.querySelector('#reg-password');
+   const password2= document.querySelector('#id_password1');
+   showPassword2.addEventListener('click', function(e){
+    console.log('hello');
+    const type = password2.getAttribute('type')==='password' ? 'text' : 'password';
+    password2.setAttribute('type', type);
+    this.classList.toggle('fa-eye-slash');
+   })
+ </script>
+  <script>
+   const showPassword3=document.querySelector('#reg-password3');
+   const password3= document.querySelector('#id_password2');
+   showPassword3.addEventListener('click', function(e){
+    console.log('hello');
+    const type = password3.getAttribute('type')==='password' ? 'text' : 'password';
+    password3.setAttribute('type', type);
+    this.classList.toggle('fa-eye-slash');
+   })
+ </script>
 
  {% endblock%}
  
