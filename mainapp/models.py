@@ -156,7 +156,7 @@ class Advert(models.Model):
 	status=models.CharField(max_length=50, choices=STATUS, default='pending')
 	product_quantity=models.PositiveIntegerField()
 	product_location=models.CharField(max_length=100)
-	# contact=models.CharField(max_length=60, null=True,blank=True)
+	contact=models.CharField(max_length=60, null=True,blank=True)
 	posted_on=models.DateTimeField(auto_now_add=True)
 	clicks=models.IntegerField(default=0)
 
