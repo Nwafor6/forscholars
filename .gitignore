@@ -1,5 +1,14 @@
-venv
+
 *.pyc
 db.sqlite3
 media
+# Environments
+.vscode
 .env
+.venv
+env/
+/env
+venv/
+ENV/
+env.bak/
+venv.bak/

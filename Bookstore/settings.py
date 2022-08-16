@@ -14,6 +14,10 @@ import django_heroku
 from pathlib import Path
 from decouple import config
 import os
+import environ
+
+env = environ.Env()
+environ.Env.read_env()
 
 env=environ.Env()
 environ.Env.read_env()
@@ -169,8 +173,13 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT=425
 EMAIL_USE_TLS=True
 EMAIL_HOST_USER='nwaforglory6@gmail.com'
+<<<<<<< HEAD
 EMAIL_HOST_PASSWORD='qjkcabzjrvxqpxsa'
 print(EMAIL_HOST_PASSWORD, '....')
+=======
+
+EMAIL_HOST_PASSWORD=env('EMAIL_HOST_PASSWORD')
+>>>>>>> 2c0e51a5146e7a7ca534fc9f481097806dcb62f9
 
 
 # AWS_ACCESS_KEY=config('AWS_ACCESS_KEY')
