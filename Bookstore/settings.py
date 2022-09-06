@@ -34,7 +34,7 @@ environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 SECRET_KEY = config("DJANGO_SECRET_KEY",default='django-insecure-+*@pchsapa@$taympvh^a6ro5-31lg+j6b18ytjvbq_jwbg+my')
 # print(SECRET_KEY, "\n")
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config("DJANGO_DEBUG",default=True, cast=bool)
+DEBUG = config("DJANGO_DEBUG",default=False, cast=bool)
 # print(DEBUG,"\n")
 ALLOWED_HOSTS = ['forscholars.herokuapp.com', 'localhost', '127.0.0.1']
 
@@ -173,9 +173,8 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT=587
 EMAIL_USE_TLS=True
 EMAIL_HOST_USER='nwaforglory6@gmail.com'
-EMAIL_HOST_PASSWORD="fkiorfsqwkkjzzch"
-DEFAULT_EMAIL="nwaforglory6@gmail.com"
-# EMAIL_HOST_PASSWORD=env('EMAIL_HOST_PASSWORD')
+# DEFAULT_EMAIL="nwaforglory6@gmail.com"
+EMAIL_HOST_PASSWORD=env('EMAIL_HOST_PASSWORD')
 
 print(EMAIL_HOST_PASSWORD,'+++')
 
