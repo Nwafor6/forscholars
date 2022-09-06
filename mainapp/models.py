@@ -179,3 +179,6 @@ class AdvertImages(models.Model):
 
 	def __str__(self):
 		return f"{self.advert.product_name} images"
+
+
+		

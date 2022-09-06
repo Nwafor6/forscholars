@@ -3,14 +3,7 @@ from .models import CustomUser, Profile
 from django.contrib.auth.admin import UserAdmin
 # # Register your models here.
 
-# class CustomUserAdmin(UserAdmin):
-# 	add_form=UserRegisterForm
-# 	form=UserUpdateForm
-# 	model=CustomUser
-# 	list_display = ["email",]
-# 	ordering = ('email',)
 
-# admin.site.register(CustomUser,CustomUserAdmin)
 admin.site.register(Profile)
 
 #######################
