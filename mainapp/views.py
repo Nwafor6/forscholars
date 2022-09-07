@@ -9,6 +9,8 @@ from django.views.generic import ListView,DetailView
 from django.views.generic.edit import CreateView
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
+from django.core.mail import send_mail, BadHeaderError
+from django.conf import settings
 import random
 
 # Create your views here.
@@ -151,6 +153,17 @@ def contact(request):
 			message= request.POST.get('message'),
 			)
 		contact.save()
+		# send form message to email
+
+		subject=request.POST.get('name')
+		from_email=request.POST.get('email')
+		message=request.POST.get('message')
+
+		try:
+			send_mail(subject, message, from_email, ["forscholarsedu@gmail.com"])
+		except BadHeaderError:
+			return HttpResponse('invalid header found.')
+
 		# return redirect('subscribed')
 		return render(request, 'mainapp/susbscribe.html')
 	return render (request, 'mainapp/contact.html')
