@@ -167,7 +167,7 @@ class Advert(models.Model):
 	slug=models.SlugField(blank=True, null=True)
 	product_price=models.PositiveIntegerField()
 	product_cover_image=models.ImageField(upload_to='product-images')
-	description=models.CharField(max_length=300)
+	description=models.TextField()
 	status=models.CharField(max_length=50, choices=STATUS, default='pending')
 	product_quantity=models.PositiveIntegerField()
 	product_location=models.CharField(max_length=100)

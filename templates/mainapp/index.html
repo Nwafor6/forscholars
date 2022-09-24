@@ -32,6 +32,9 @@
       html{
         overflow-x: hidden;
       }
+      .layout_padding {
+    padding: 34px 0;
+    }
     </style>
   <div id="slider_section">
     <section class="slider_section " style="background-image:linear-gradient(rgba(4, 9, 30, 0.7),rgba(4, 9, 30, 0.7)), url({%static 'images/bg.jpg'%})">
@@ -461,7 +464,7 @@
             </div>
             {%endfor%}
           </div> 
-           <div class="text-center mt-3"><a class="btn btn-outline-primary mr-3" href="">See All</a></div> 
+           <div class="text-center mt-3"><a class="btn btn-outline-primary mr-3" href="{%url 'blog'%}">See All</a></div> 
         </div>  
       </section>
       <!-- End calto-action Area -->
@@ -495,7 +498,7 @@
                 <h1 class="mb-10 ">Get In Touch With Us</h1>
                 <p class="">Would you like to get in touch with our team either for school related matters or any technical help?? Or will you like to hire us for web development job, management and  graphics design??
                 We have various platforms set up alreay for you.. Use any of the Link below to get on board with our team !!</p>
-                <a class="btn btn-outline-primary mr-3" href="">Contact Us</a>
+                <a class="btn btn-outline-primary mr-3" href="{%url 'contact'%}">Contact Us</a>
                 <a class="btn btn-outline-primary mr-3" href="Tel: +2347025065702">Hire Us</a>
               </div>
             </div>

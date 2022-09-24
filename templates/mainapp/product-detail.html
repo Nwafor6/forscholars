@@ -70,14 +70,16 @@
         <div>
         <h2 class="text-center">Buy and Sell Items</h2>
         <p>Buy and sell items online for <strong>FREE!</strong><br></p>
-         <p style="color:red">Items in this forum are apprved before displayed to potential buyers, but we still will like to warn you to make sure good are in good condition before making payments</p>
+         <p style="color:red">Items in this forum are approved before displayed to potential buyers, but we still will like to warn you to make sure good are in good condition before making payments</p>
          <p><a href="{%url 'advertise' %}" class="btn btn-secondary">Sell Item</a></p>
       </div>
         <div class="row ">
           <div class="col-md-7 p-4 card mb-3">
               <div class="item  shadow-sm">
                 <div class="item-img">
+                  {%if item.product_cover_image%}
                   <img src="{{item.product_cover_image.url}}" alt="{{item.prouct_name}} image">
+                  {%endif%}
                 </div>
                 <div class="item-body">
                   <a href=""><h6>{{item.product_name}}</h6></a>
@@ -90,13 +92,15 @@
                 </div>
               </div>
               <div class="contact-seller mt-3">
-                <h4>Contact: <button class="btn btn-success" disabled>{{item.contact}}</button></h4>
+                <a href="Tel: {{item.contact}}" class="btn btn-outline-primary">Call</a>
               </div>
+              <div class="row">
               {%for image in images%}
-              <div class="pdt-dscr">
-                <img src="{{image.product_image.url}}" class="img-fluid" alt="{{iamge.product_name.prouct_name}}">
+              <div class="col-md-6">
+                <img src="{{image.product_image.url}}" class="img-thumbnail" alt="{{iamge.product_name.prouct_name}}">
               </div>
-              {%endfor%}<hr>
+              {%endfor%}
+              </div><hr>
               <div class="mt-3">
                 <h3 class="text-center">Related Items</h3>
                 {% for item in related%}

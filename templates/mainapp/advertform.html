@@ -21,7 +21,7 @@
       <h2 class="text-center mb-5">Upload Products to our market</h2>
      <div class="row">
        <div class="col-sm-12 col-lg-6 advert shadow-sm">
-        <form method="post " enctype="multipart/form-data">
+        <form method="post" enctype="multipart/form-data">
         {%csrf_token%}
         {{form|crispy}}
         {{imageform|crispy}}

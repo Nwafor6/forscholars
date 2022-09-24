@@ -58,7 +58,6 @@ def blog_detail(request, slug):
 	blog=Blog.objects.get(slug=slug)
 	slug=blog
 	images=blog.blogimages_set.all()
-	print(images)
 	# blogs=blog.user
 	# autor=Profile.objects.get(user=blogs)
 	latest=Blog.objects.all()[:4]
@@ -124,13 +123,11 @@ class DepartmentView(ListView):
 def filter_processing(request):
 	if request.method=='GET':
 		q=request.GET.get('q')
-		print(q)
 		if len(q)!=0:
 			if q =='All':
 				return redirect ('departments')
 			school=School.objects.get(school_name=q)
 			filter_result=school.department_set.all()
-			print(filter_result)
 			return render( request,'mainapp/departments.html', {'filter_result':filter_result})
 	else:
 		return redirect ('departments')
@@ -139,7 +136,6 @@ def bookdetailview(request, slug):
 	book=BookCategory.objects.get(slug=slug)
 	related=book.department
 	related=BookCategory.objects.filter(department=related)
-	print(related)
 	return render (request, 'mainapp/bookdetailview.html', {'book':book, 'related':related})
 
 
@@ -264,7 +260,6 @@ def advert_list(request):
 def advert_detail(request,pk):
 	item=Advert.objects.get(pk=pk)
 	user=item.user
-	print(user)
 	related=item.product_category
 	images=item.advertimages_set.all()[:4]
 	related=Advert.objects.filter(product_category=related)
