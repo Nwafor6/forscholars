@@ -20,7 +20,7 @@
 </style>
   <!-- blog section -->
 
-  <section class="blog_section layout_padding">
+  <section class="blog_section layout_padding" style="background-color: white;">
     <div class="container">
       <div class="heading_container heading_center">
         <h1>
@@ -59,12 +59,12 @@
       </div> -->
       <!--  Start callto-action Area -->
 
-      <section class="callto-action-area section-gap mb-5 mt-5 " id="join">
+      <section class="callto-action-area section-gap mb-5 mt-5 " id="join" >
         <div class="container">
           <div class="row d-flelx justify-content-centelr">
             {%for blog in page_obj%} 
             <div class="menu-content col-lg-6">
-              <div class="card mb-3 shadow-sm" style="max-width: 540kpx;">
+              <div class="card mb-3 shadow" style="max-width: 540kpx;" data-aos="fade-right">
                 <div class="row no-gutters">
                   <div class="col-md-4">
                     {%if blog.blog_img%}
