@@ -177,10 +177,10 @@ EMAIL_HOST_USER='nwaforglory6@gmail.com'
 # DEFAULT_EMAIL="nwaforglory6@gmail.com"
 EMAIL_HOST_PASSWORD=env('EMAIL_HOST_PASSWORD')
 
-# AWS_ACCESS_KEY_ID=config('AWS_ACCESS_KEY')
-# AWS_SECRET_ACCESS_KEY=config('AWS_SECRET_KEY')
-# AWS_STORAGE_BUCKET_NAME='foscholarsbucket'
-# AWS_S3_FILE_OVERWRITE=False
-# AWS_DEFAULT_ACL=None
-# DEFAULT_FILE_STORAGE='storages.backends.s3boto3.S3Boto3Storage'
+AWS_ACCESS_KEY_ID=config('AWS_ACCESS_KEY')
+AWS_SECRET_ACCESS_KEY=config('AWS_SECRET_KEY')
+AWS_STORAGE_BUCKET_NAME='foscholarsbucket'
+AWS_S3_FILE_OVERWRITE=False
+AWS_DEFAULT_ACL=None
+DEFAULT_FILE_STORAGE='storages.backends.s3boto3.S3Boto3Storage'
 # print(AWS_SECRET_KEY,'set')
