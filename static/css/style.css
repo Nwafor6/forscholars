@@ -528,7 +528,7 @@ a:focus {
 
 .blog_section .box .img-box .blog_date {
   position: absolute;
-  left: 25px;
+  left: -5px;
   bottom: 0;
   padding: 10px 25px;
   font-size: 18px;

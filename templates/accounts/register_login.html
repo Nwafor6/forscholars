@@ -42,6 +42,7 @@
         {% csrf_token%}
         {{form|crispy}}<i class="fa fa-eye reg-eye reg-eye1" id="reg-password"></i>
         <i class="fa fa-eye reg-eye2 reg-eye" id="reg-password3"></i>
+        <!-- <input type="hidden" name="next" value="{{ request.GET.next }}"/> -->
         <input type="submit" value="Register" class="btn btn-outline-primary">
       </form>
       <div class="sign-in"><a href="{%url 'login'%}" >Sign in</a></div>

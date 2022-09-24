@@ -77,13 +77,18 @@
         <p> <span>Author: {{blog.user.first_name}} </span>| <span>Posted: {{blog.date_posted|timesince}}</span></p>
       </div><hr>
       <div class="row"style="position: relative;">
-        <div class="col-md-7"style="position: relative;">
+        <div class="col-md-8"style="position: relative;">
           <div class="card" style="position: relative;">
-            {%if blog.blog_img%}
+            <div class="row">
+            {%for img in images%}
+            <div class="col-md-4"><img src="{{img.image.url}}" class="img-thumbnail mb-2" alt="..." style="height:200px; width: 100%;"></div>
+            {%endfor%}
+          </div>
+            <!-- {%if blog.blog_img%}
             <img src="{{blog.blog_img.url}}" class="card-img-top" alt="...">
-            {%endif%}
+            {%endif%} -->
             <div class="card-body">
-              <h5 class="card-title">{{blog.title}}</h5>
+              <h3 class="card-title">{{blog.title}}</h3>
               <p class="card-text">{{blog.body}}</p>
               <!-- ads -->
               {%if x_advert%}
@@ -125,7 +130,7 @@
             <p><strong class="text-light bg-dark p-1">You are what keeps us going. Thank you!!</strong></p>
           </div>
         </div>
-        <div class="col-md-1"></div>
+        <!-- <div class="col-md-1"></div> -->
         <div class="col-md-4">
           <div class="row">
             <div class="card bg-light mb-3" style="max-width: 18rem;">
@@ -168,7 +173,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-7 col-sm-12 ">
-          <div class="heading_container ">
+          <!-- <div class="heading_container ">
             <h2 class="">
               Comments
             </h2>
@@ -184,12 +189,13 @@
                 SEND
               </button>
             </div>
-          </form>
+          </form> -->
+          {% include 'partials/comments.html' with url=blog.slug %}
         </div>
       </div>
     </div>
   </section>
-  {%for comment in comment%}
+ <!--  {%for comment in comment%}
    <div class="col-md-7">
     <div class="box">
       <div class="img-box">
@@ -211,10 +217,11 @@
       {%endif%}
     </div>
   </div>
-   {%endfor%}
+   {%endfor%} -->
     <div class="categories text-center mt-5"><strong><span style="color: red;">Categories:</span></strong>
-            <span class="badge badge-pill badge-secondary"><a href="" >JAMB</a></span><span class="badge badge-pill badge-secondary"><a href="">WAEC</a></span>
-            <span class="badge badge-pill badge-secondary"><a href="">ASUU</a></span><span class="badge badge-pill badge-secondary"><a href="">SCHOLARSHIPS</a></span>
+            {%for category in categories%}
+            <span class="badge badge-pill badge-secondary"><a href="{%url 'category' category.pk %}" style="color:white;">{{category.title}}</a></span>
+            {%endfor%}
           </div>
   </div>
   </section>

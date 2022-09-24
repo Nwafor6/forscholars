@@ -10,12 +10,12 @@
     color: white;
     padding: 5px;
   }
-  .card >img{
+ /* .card >img{
   
     height: 258px;
-  }
-  .card{
-    height: 540px;
+  }*/
+ /* .card{
+    height: 540px;*/
   }
 </style>
   <!-- blog section -->
@@ -31,12 +31,13 @@
             Latest News From SCHOOL, JAMB, ASUU, Post-UTME, WAEC, NECO, NABTEB, Scholarships Opportunities.
           </h5>
           <div class="categories"><strong><span style="color: red;">Categories:</span></strong>
-            <span class="badge badge-pill badge-secondary"><a href="" >JAMB</a></span><span class="badge badge-pill badge-secondary"><a href="">WAEC</a></span>
-            <span class="badge badge-pill badge-secondary"><a href="">ASUU</a></span><span class="badge badge-pill badge-secondary"><a href="">SCHOLARSHIPS</a></span>
+            {%for category in categories%}
+            <span class="badge badge-pill badge-secondary"><a href="{%url 'category' category.pk %}" style="color:white;">{{category.title}}</a></span>
+            {%endfor%}
           </div>
         </div>
       </div>
-      <div class="row mt-4">
+     <!--  <div class="row mt-4">
         {%for blog in blogs%}
         <div class=" col-lg-3 col-md-4 col-sm-12 mb-2">
           <div class="card">
@@ -55,7 +56,51 @@
           </div>
         </div>
         {%endfor%}
-      </div>
+      </div> -->
+      <!--  Start callto-action Area -->
+
+      <section class="callto-action-area section-gap mb-5 mt-5 " id="join">
+        <div class="container">
+          <div class="row d-flelx justify-content-centelr">
+            {%for blog in page_obj%} 
+            <div class="menu-content col-lg-6">
+              <div class="card mb-3 shadow-sm" style="max-width: 540kpx;">
+                <div class="row no-gutters">
+                  <div class="col-md-4">
+                    {%if blog.blog_img%}
+                    <img src="{{blog.blog_img.url}}" class="card-img-top img-fluid" alt="...">
+                    {%endif%}
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <h5 class="card-title">{{blog.title}}</h5>
+                      <p class="card-text">{{blog.body|slice:":100"}}</p>
+                      <p class="card-text"><small class="text-muted"><a href="{%url '_blog' blog.slug%}">
+                Read More
+              </a></small></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {%endfor%}
+          </div> 
+        </div>  
+      </section>
+      <!-- End calto-action Area -->
+      <!-- paginator -->
+          <div class="paginat;ion mt-4">  
+            {% if page_obj.has_previous %} 
+              <a href="?page=1" class="btn btn-outline-primary mr-3">&laquo; first</a> <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-outline-primary mr-3">previous</a>
+            {% endif %}
+              
+                {% if page_obj.has_next %} 
+                  <a href="?page={{ page_obj.next_page_number }}" class="btn btn-outline-primary mr-3">next</a> <a href="?page={{ page_obj.paginator.num_pages }}" class="btn btn-outline-primary">last &raquo;</a> 
+                {% endif %} 
+                <div class="mt-3"><span class="current" > Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}. </span></div>
+              </div>
+          <!-- end paginator -->
+
     </div>
     </div>
   </section>

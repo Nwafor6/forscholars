@@ -89,6 +89,12 @@ class ContactUs(models.Model):
 	def __str__(self):
 		return self.name
 
+class Category(models.Model):
+	title=models.CharField(max_length=200)
+
+	def __str__(self):
+		return self.title
+
 class Blog(models.Model):
 	user=models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True)
 	title=models.CharField(max_length=100)
@@ -96,6 +102,7 @@ class Blog(models.Model):
 	body=models.TextField()
 	blog_img=models.ImageField(blank=True, null=True)
 	file=models.FileField(blank=True, null=True)
+	Category=models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
 	date_posted=models.DateTimeField(auto_now_add=True)
 
 	class Meta:
@@ -107,6 +114,14 @@ class Blog(models.Model):
 		if not self.slug:
 			self.slug=slugify(self.title)
 		super(Blog, self).save(*args,**kwargs)
+
+
+class BlogImages(models.Model):
+	blog=models.ForeignKey(Blog, on_delete=models.CASCADE)
+	image=models.ImageField()
+
+	def __str__(self):
+		return self.blog.title
 
 class Comment(models.Model):
 	user=models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True)

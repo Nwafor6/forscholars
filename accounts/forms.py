@@ -32,6 +32,7 @@ class CustomUserCreationForm(UserCreationForm):
 
 
 class CustomUserChangeForm(UserChangeForm):
+    password = None
     email= forms.EmailField(max_length = 50 ,widget=forms.TextInput(attrs={'placeholder':'@example.com'}))
     def __init__(self, *args, **kwargs):
         super(CustomUserChangeForm, self).__init__(*args, **kwargs)
@@ -40,7 +41,7 @@ class CustomUserChangeForm(UserChangeForm):
             self.fields[f].help_text=''
     class Meta:
         model = CustomUser
-        fields = ["email"]
+        fields = ["email",'first_name', 'last_name']
 
 class ProfileUpdateForm(forms.ModelForm):
 	class Meta:

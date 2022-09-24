@@ -7,6 +7,17 @@ from django.contrib.auth import authenticate, login, logout
 from .forms import (CustomUserCreationForm,
 	CustomUserChangeForm, ProfileUpdateForm )
 
+# import for deactiavting user at first registraion
+from django.contrib.sites.shortcuts import get_current_site  
+from django.utils.encoding import force_bytes, force_text  
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode  
+from django.template.loader import render_to_string  
+from .tokens import account_activation_token 
+from django.core.mail import EmailMessage 
+from django.core.mail import send_mail, BadHeaderError
+from django.core.mail import EmailMultiAlternatives
+# end
+
 
 
 # Create your views here.
@@ -55,10 +66,34 @@ def registrationView(request):
 	page='reg'
 	if request.method == "POST":
 		form=CustomUserCreationForm(request.POST)
+		# valuenext= request.POST.get('next')
 		if form.is_valid():
-			user=form.save()
-			login(request,user)
-			return redirect('home')
+			user=form.save(commit =False)
+			user.is_active = False
+			user.save()
+			# login(request,user)
+			# return redirect('home')
+
+			try:
+				# to get the domain of the current site 
+				from_email='nwaforglory6@gmail.com'
+				current_site = get_current_site(request) 
+				mail_subject = 'Activation link has been sent to your email id'
+
+				message = render_to_string('accounts/acc_active_email.html', {  
+	                'user': user,  
+	                'domain': current_site.domain,  
+	                'uid':urlsafe_base64_encode(force_bytes(user.pk)),  
+	                'token':account_activation_token.make_token(user),  
+	            })
+
+				to_email = form.cleaned_data.get('email')
+				msg = EmailMultiAlternatives(mail_subject, message, from_email, [to_email]) 
+				msg.attach_alternative(message, "text/html") 
+				msg.send()  
+				return render(request, 'accounts/reg_email_set_confirm.html')
+			except:
+				User.objects.all().first().delete()
 	else:
 		form=CustomUserCreationForm()	
 	return render(request, 'accounts/register_login.html',{'form':form, 'page':page})
@@ -71,4 +106,18 @@ def logoutView_1(request):
 def logoutView(request):
 	logout(request)
 	return redirect('home')
+
+# activation View
+def activate(request, uidb64, token):  
+    try:  
+        uid = force_text(urlsafe_base64_decode(uidb64))  
+        user = User.objects.get(pk=uid)  
+    except(TypeError, ValueError, OverflowError, User.DoesNotExist):  
+        user = None  
+    if user is not None and account_activation_token.check_token(user, token):  
+        user.is_active = True  
+        user.save()  
+        return render(request, 'accounts/email_confirm_success.html') 
+    else:  
+        return HttpResponse('Activation link is invalid!')
 

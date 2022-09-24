@@ -21,6 +21,8 @@ from . import utils
 
 class CustomUser(AbstractUser):
     username = None 
+    first_name=models.CharField(max_length=200, null=True,blank=True)
+    last_name=models.CharField(max_length=200, null=True,blank=True)
     email = models.EmailField(unique=True)
     
     slug = models.SlugField(blank=True, unique=True)
@@ -55,7 +57,7 @@ class CustomUser(AbstractUser):
 
 class Profile(models.Model):
 	user=models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-	profile_img=models.ImageField(default="profile-images/avater.png")
+	profile_img=models.ImageField(default="../static/images/avater.png")
 	department = models.CharField(max_length=200)
 	phone = models.CharField(max_length=200)
 	bio=models.CharField(max_length=600)

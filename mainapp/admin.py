@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import (BookCategory,Department, Blog, Comment, Newsletter, ProductCategory, Advert, School, ContactUs,AdvertImages )
+from .models import (BookCategory,Department, Blog, Comment, Newsletter, ProductCategory, Advert, School, ContactUs,AdvertImages, Category,BlogImages )
 # Register your models here.
 
 class BookCategoryAdmin(admin.ModelAdmin):
@@ -33,6 +33,8 @@ admin.site.register(ProductCategory)
 admin.site.register(Advert, AdvertAdmin)
 admin.site.register(School, SchoolAdmin)
 admin.site.register(AdvertImages)
+admin.site.register(Category)
+admin.site.register(BlogImages)
 
 
 

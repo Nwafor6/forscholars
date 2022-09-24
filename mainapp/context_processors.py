@@ -1,4 +1,4 @@
-from .models import Advert, Blog, School
+from .models import Advert, Blog, School, Category
 import random
 
 # checking if there exits any in the database
@@ -6,10 +6,17 @@ import random
 # x_read=int(Blog.objects.all().count())
 # print(type(ads))
 
+def category_context(request):
+	
+	categories=Category.objects.all()
+
+	return({'categories':categories})
+
 
 def ads(request):
 	pks =Advert.objects.filter(status='verified')
 	pks=[i.pk for i in pks if len(pks)]
+	categories=Category.objects.all()
 	# for homepage
 	blogs=Blog.objects.all()
 	# for school filtering query

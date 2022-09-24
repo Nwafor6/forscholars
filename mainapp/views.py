@@ -3,7 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.core.paginator import Paginator 
 from django.urls import reverse
 from accounts.models import Profile, CustomUser as User
-from .models import BookCategory, Department, ContactUs, Blog, Comment, Newsletter, Advert, ProductCategory, School, AdvertImages
+from .models import BookCategory, Department, ContactUs, Blog, Comment, Newsletter, Advert, ProductCategory, School, AdvertImages, BlogImages, Category
 from .forms  import CommentUpdateForm, AdvertForm
 from django.views.generic import ListView,DetailView
 from django.views.generic.edit import CreateView
@@ -16,22 +16,49 @@ import random
 # Create your views here.
 
 def home(request):
-	blog=Blog.objects.all()
-	if len(blog) !=0 and len (blog) >=3:
-		blog=Blog.objects.all()[:2]
+	blogs=Blog.objects.all()[:6]
+	# if len(blog) !=0 and len (blog) >=3:
+	# 	blog=Blog.objects.all()[:2]
 
-	return render (request, 'mainapp/index.html', {'blog':blog})
+	return render (request, 'mainapp/index.html', {'blogs':blogs})
+
+
+def privacy(request):
+	return render(request, 'mainapp/privacy-policy.html')
+
+
+def terms_condiction(request):
+	return render(request, 'mainapp/terms-condition.html')
+
+
+
+
+
+
 
 def about(request):
 	return render (request, 'mainapp/about.html')
 
+def categoryView(request,pk):
+	category=Category.objects.get(pk=pk)
+	blogs=category.blog_set.all()
+	paginator = Paginator(blogs, 7) # Show 25 contacts per page.
+	page_number = request.GET.get('page') 
+	page_obj = paginator.get_page(page_number) 
+	return render (request, 'mainapp/blogs.html', {'blogs':blogs,'paginator':paginator, 'page_number':page_number, 'page_obj':page_obj})
+
 def blog(request):
-	blogs=Blog.objects.all()
-	return render (request, 'mainapp/blogs.html', {'blogs':blogs})
+	blogs=Blog.objects.all().order_by('-date_posted')
+	paginator = Paginator(blogs, 7) # Show 25 contacts per page.
+	page_number = request.GET.get('page') 
+	page_obj = paginator.get_page(page_number) 
+	return render (request, 'mainapp/blogs.html', {'blogs':blogs,'paginator':paginator, 'page_number':page_number, 'page_obj':page_obj})
 
 def blog_detail(request, slug):
 	blog=Blog.objects.get(slug=slug)
 	slug=blog
+	images=blog.blogimages_set.all()
+	print(images)
 	# blogs=blog.user
 	# autor=Profile.objects.get(user=blogs)
 	latest=Blog.objects.all()[:4]
@@ -47,7 +74,7 @@ def blog_detail(request, slug):
 			_comment.save()
 		else:
 			return redirect('login')
-	return render (request, 'mainapp/blog.html', {'blog':blog, 'latest':latest, 'comment':comment})
+	return render (request, 'mainapp/blog.html', {'blog':blog, 'latest':latest, 'comment':comment, 'images':images})
 	
 
 
@@ -182,7 +209,7 @@ def search(request):
 	return render(request, 'mainapp/text_bk_detail.html', {'books':books})
 
 def newsletter(request):
-	message='susbscribed'
+	msg='susbscribed'
 	if request.method=='POST':
 		try:
 			email=Newsletter.objects.get(email=request.POST.get('email'))
@@ -190,7 +217,19 @@ def newsletter(request):
 		except:
 			subscribe=Newsletter.objects.create(email=request.POST.get('email'))
 			subscribe.save()
-	return render(request, 'mainapp/susbscribe.html',{'message':message})
+			# send new subcribers mails
+			email=request.POST.get('email')
+			subject=f"Thank you for subscribing to our newsletter"
+			from_email='forscholarsedu@gmail.com'
+			message=f"{email}, Thank you for subscribing to our newsletter, we post weeklyblog post and we will not fail to have you notified. Thank you from forscholars team!!"
+
+			try:
+				send_mail(subject, message, from_email, [email])
+			except BadHeaderError:
+				return HttpResponse('invalid header found.')
+
+
+	return render(request, 'mainapp/susbscribe.html',{'message':msg})
 
 #advert view
 class AdvertView(CreateView):
@@ -234,6 +273,8 @@ def advert_detail(request,pk):
 def handler404(request, exception):
     return render(request, 'mainapp/404.html', status=404)
 
-def handler500(request):
-    return render(request, 'mainapp/500.html', status=500)
+
+
+
+
 

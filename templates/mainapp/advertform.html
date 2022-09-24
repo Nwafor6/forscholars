@@ -7,19 +7,25 @@
 
   <!-- blog section -->
 <style>
-
+  .blog_section {
+     background-color: #fffff !important; 
+}
+.advert{
+  margin: 0 auto !important;
+  padding: 30px;
+}
 
 </style>
-  <section class="blog_section layout_padding">
+  <section class=" layout_padding">
     <div class="container form">
       <h2 class="text-center mb-5">Upload Products to our market</h2>
      <div class="row">
-       <div class="col-sm-12 col-lg-6">
-        <form method="post" enctype="multipart/form-data">
+       <div class="col-sm-12 col-lg-6 advert shadow-sm">
+        <form method="post " enctype="multipart/form-data">
         {%csrf_token%}
         {{form|crispy}}
         {{imageform|crispy}}
-        <button type="submit">
+        <button type="submit" class="btn btn-primary">
           Submit
         </button>
       </form>

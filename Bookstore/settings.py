@@ -34,7 +34,7 @@ environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 SECRET_KEY = config("DJANGO_SECRET_KEY",default='django-insecure-+*@pchsapa@$taympvh^a6ro5-31lg+j6b18ytjvbq_jwbg+my')
 # print(SECRET_KEY, "\n")
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config("DJANGO_DEBUG",default=False, cast=bool)
+DEBUG = config("DJANGO_DEBUG",default=True, cast=bool)
 # print(DEBUG,"\n")
 ALLOWED_HOSTS = ['forscholars.herokuapp.com', 'localhost', '127.0.0.1']
 
@@ -85,6 +85,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'mainapp.context_processors.ads',
+                'mainapp.context_processors.category_context',
           
             ],
         },
