@@ -28,7 +28,7 @@ class CustomUser(AbstractUser):
     slug = models.SlugField(blank=True, unique=True)
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = []
+    REQUIRED_FIELDS = ['first_name','last_name']
 
     objects = CustomUserManager()
     class Meta:
