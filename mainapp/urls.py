@@ -21,9 +21,12 @@ urlpatterns =[
 	path('subscribed/', views.newsletter, name="subscribed"),
 	path('update-comment/<str:pk>/', views.update_comment, name='update-comment'),
 	path('delete-comment/<str:pk>/', views.delete_comment, name='delete-comment'),
-	path('advertise', views.AdvertView.as_view(), name='advertise'),
+	path('market-place/sell', views.AdvertView.as_view(), name='advertise'),
 	path('buy-and-sell', views.advert_list, name='buy-and-sell'),
 	path('buy-and-sell/<str:pk>', views.advert_detail, name='item-detail'),
+
+	# paid advert
+	path('my-product/advertise', views.PaidAdvertView.as_view(), name='paid-advert'),
 
 
 	# terms and condiction

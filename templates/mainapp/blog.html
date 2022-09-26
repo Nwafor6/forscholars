@@ -72,9 +72,9 @@
       </div>
       <div class="heading_containerheading_center">
         <h2>
-         {{blog.title}}
+         {{blog.title|safe}}
         </h2>
-        <p> <span>Author: {{blog.user.first_name}} </span>| <span>Posted: {{blog.date_posted|timesince}}</span></p>
+        <p> <span>Author: {{blog.user.first_name|safe}} </span>| <span>Posted: {{blog.date_posted|timesince}}</span></p>
       </div><hr>
       <div class="row"style="position: relative;">
         <div class="col-md-8"style="position: relative;">
@@ -161,7 +161,7 @@
               <div class="detail-box">
                 {%for blog in latest%}
                 <h5>
-                  <a href="{%url '_blog' blog.slug%}">{{blog.title}}</a><hr>
+                  <a href="{%url '_blog' blog.slug%}">{{blog.title|safe}}</a><hr>
                 </h5>
                   {%endfor%}
               </div>
@@ -220,7 +220,7 @@
    {%endfor%} -->
     <div class="categories text-center mt-5"><strong><span style="color: red;">Categories:</span></strong>
             {%for category in categories%}
-            <span class="badge badge-pill badge-secondary"><a href="{%url 'category' category.pk %}" style="color:white;">{{category.title}}</a></span>
+            <span class="badge badge-pill badge-secondary"><a href="{%url 'category' category.pk %}" style="color:white;">{{category.title|safe}}</a></span>
             {%endfor%}
           </div>
   </div>

@@ -82,22 +82,22 @@
                   {%endif%}
                 </div>
                 <div class="item-body">
-                  <a href=""><h6>{{item.product_name}}</h6></a>
-                  <p>Price: <span>{{item.product_price}}</span></p>
-                  <p>Category: {{item.product_category}}</p>
-                  <p>Seller: {{user.first_name}} {{user.last_name}} | {{user.email}} </p>
-                  <p>Location: {{item.product_location}}</p>
-                  <p>Description: {{item.description}}</p>
+                  <h5>{{item.product_name}}</h5>
+                  <p>Price: <span>{{item.product_price|safe}}</span></p>
+                  <p>Category: {{item.product_category|safe}}</p>
+                  <p>Seller: {{user.first_name|safe}} {{user.last_name|safe}} | {{user.email|safe}} </p>
+                  <p>Location: {{item.product_location|safe}}</p>
+                  <p>Description: {{item.description|safe}}</p>
                   <p><small>Posted: {{item.posted_on|timesince}}</small></p>
                 </div>
               </div>
-              <div class="contact-seller mt-3">
+              <div class="contact-seller mt-3 mb-2">
                 <a href="Tel: {{item.contact}}" class="btn btn-outline-primary">Call</a>
               </div>
               <div class="row">
               {%for image in images%}
-              <div class="col-md-6">
-                <img src="{{image.product_image.url}}" class="img-thumbnail" alt="{{iamge.product_name.prouct_name}}">
+              <div class="col-md-4">
+                <img src="{{image.product_image.url}}" class="img-thumbnail" alt="{{iamge.product_name.prouct_name}}" width="200" height="200">
               </div>
               {%endfor%}
               </div><hr>
@@ -126,7 +126,7 @@
                <div class="content">
                   <p class="card-text">
                   We can connect your business to potential buys and sellers. Our marketing services are top notche. Show you products to over our 40k+ user today by clicking the button to contact our marketing team. Earn as you learn...  </p>
-                  <p><a href="" class="btn btn-secondary blink">Advertise</a></p>
+                  <p><a href="{%url 'advertise'%}" class="btn btn-secondary blink">Advertise</a></p>
                </div>
                <div class="subscribers-online mt-2" style="display: flex; gap:35px; font-size:3px">
                  <div class="subscribers">

@@ -65,17 +65,18 @@
         <div class="row ">
           <div class="col-md-7 p-4 card">
             {% for item in page_obj%}
-              <div class="item  shadow-sm">
-                <div class="item-img">
+              <div class="item  shadow">
+                <div class="item-img p-3">
                   {%if item.product_cover_image%}
                   <img src="{{item.product_cover_image.url}}" alt="{{item.prouct_name}} image">
                   {%endif%}
                 </div>
-                <div class="item-body">
-                  <a href="{% url 'item-detail' item.pk %}"><h6>{{item.product_name}}</h6></a>
-                  <p>Price: <span>{{item.product_price}}</span></p>
-                  <p>Category: {{item.product_category}}</p>
+                <div class="item-body p-3">
+                  <a href="{% url 'item-detail' item.pk %}"><h6>{{item.product_name|safe}}</h6></a>
                   <p><small>Posted: {{item.posted_on|timesince}}</small></p>
+                  <p>Price: {{item.description|slice:":300" |safe}}</p>
+                  <p>Price: #<span>{{item.product_price|safe}}</span></p>
+                  <h6>Category: {{item.product_category|safe}}</h6>
                 </div>
               </div>
             {%endfor%}
@@ -88,7 +89,7 @@
                <div class="content">
                   <p class="card-text">
                   We can connect your business to potential buys and sellers. Our marketing services are top notche. Show you products to over our 40k+ user today by clicking the button to contact our marketing team. Earn as you learn...  </p>
-                  <p><a href="" class="btn btn-secondary blink">Advertise</a></p>
+                  <p><a href="{%url 'advertise'%}" class="btn btn-secondary blink">Advertise</a></p>
                </div>
                <div class="subscribers-online mt-2" style="display: flex; gap:35px; font-size:3px">
                  <div class="subscribers">

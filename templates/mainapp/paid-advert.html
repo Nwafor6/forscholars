@@ -1,0 +1,102 @@
+{% extends 'partials/base.html'%}
+{%load static%}
+{% load social_share %}
+{%load crispy_forms_tags%}
+{% block title%}Blog{% endblock%}
+{%block content%}
+
+  <!-- blog section -->
+<style>
+
+  .blog_section {
+     background-color: #fffff !important; 
+}
+.advert{
+  margin: 0 auto; !important;
+  padding: 30px;
+}
+.blink{
+  animation: blinker 2s linear infinite;
+  font-size: 14px;
+}
+
+@keyframes blinker{
+  50%{
+    opacity: 0;
+  }
+</style>
+
+
+
+  <section class=" layout_padding">
+    <div class="container form">
+      <section class="ad-policy container mt-3 ">
+        <div class="title text-center"><h3>Advert <span style="color: red;">Placement </span></h3></div>
+        <div class="mt-4">
+          <p>Thank you for using our advertising channel where we show your products to over 100k active users. Please read the instructions below before uploading your products and follow every step. 
+
+          </p>
+          <ol class="privacy">
+            <li> All <span style="color:red">products</span> are pending by default until after verification</li>
+            <li> Sensitive products are not allowed as the post will not the approved</li>
+            <li> Products here will be randomly displayed both in our <span style="color: red;">homepage</span>and in our<span style="color: red;">newsroom. </span></li>
+            <li> A token of <strong style="color:red"># 2000</strong> is to be paid to this account 
+              <!-- modal -->
+              <!-- Button trigger modal -->
+              <button type="button" class="border-0 blink" data-toggle="modal" data-target="#exampleModal" style="background-color: white;">
+                here
+              </button>
+
+              <!-- Modal -->
+              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <!-- <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div> -->
+                    <div class="modal-body">
+                      <p>Acoount Name: Nwafor Glory Bright</p>
+                      <p>Acoount Number: 4997420015</p>
+                      <p>Bank: First City Monument Bank</p>
+                    </div>
+                    <div class="modal-footer">
+                      <a href="https://api.whatsapp.com/message/BYABDU4RMAJUO1" target="blank" class="btn btn-outline-primary btn-sm">Confirm Payment</a>
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- endmodal -->
+             for the sponsored advert </li>
+            <li> Aside the cover image, maximum of <strong style="color:red">3 extra</strong> images and a maximun of <strong style="color:red">7mb each</strong> is allowed else, the system will reject the upload. </li>
+
+          </ol>
+        </div>
+      </section>
+      <h2 class="text-center mb-5">Upload Products to our market</h2>
+     <div class="row">
+       <div class="col-sm-12 col-lg-6 advert shadow">
+        <form method="post" enctype="multipart/form-data">
+        {%csrf_token%}
+        {{form|crispy}}
+        {{imageform|crispy}}
+        <button type="submit" class="btn btn-primary">
+          Submit
+        </button>
+      </form>
+       </div>
+     </div>
+     </div>
+    </div>
+  </section>
+
+  <!-- end blog section -->
+
+  
+
+  {% endblock%}
+  
+

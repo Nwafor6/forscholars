@@ -1,13 +1,14 @@
+
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.paginator import Paginator 
 from django.urls import reverse
 from accounts.models import Profile, CustomUser as User
 from .models import BookCategory, Department, ContactUs, Blog, Comment, Newsletter, Advert, ProductCategory, School, AdvertImages, BlogImages, Category
-from .forms  import CommentUpdateForm, AdvertForm
+from .forms  import CommentUpdateForm, AdvertForm, PaidAdvertForm
 from django.views.generic import ListView,DetailView
 from django.views.generic.edit import CreateView
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from django.core.mail import send_mail, BadHeaderError
 from django.conf import settings
@@ -228,7 +229,8 @@ def newsletter(request):
 	return render(request, 'mainapp/susbscribe.html',{'message':msg})
 
 #advert view
-class AdvertView(CreateView):
+class AdvertView(LoginRequiredMixin,CreateView):
+	login_url = 'accounts/login/'
 	form_class=AdvertForm
 	model=Advert
 	success_url='home'
@@ -243,11 +245,36 @@ class AdvertView(CreateView):
 			owner.user=user
 			owner.save()
 			images=request.FILES.getlist('images')
+			# if images:
+			# 	for  image in images:
+			# 		product_images=AdvertImages.objects.create(advert=owner, product_image=image)
+			# 		product_images.save()
+			return redirect('buy-and-sell')
+			
+		return render (request, self.template_name)
+
+class PaidAdvertView(LoginRequiredMixin,CreateView):
+	login_url = 'accounts/login/'
+	form_class=PaidAdvertForm
+	model=Advert
+	success_url='home'
+	template_name='mainapp/paid-advert.html'
+
+	def post(self,request, *args, **kwargs):
+		form=PaidAdvertForm(request.POST, request.FILES)
+		user=request.user
+		if form.is_valid():
+			data=form.cleaned_data
+			owner=form.save(commit=False)
+			owner.user=user
+			owner.save()
+			images=request.FILES.getlist('images')
 			if images:
 				for  image in images:
 					product_images=AdvertImages.objects.create(advert=owner, product_image=image)
 					product_images.save()
-			return redirect(self.success_url)
+					return redirect('buy-and-sell')
+			
 		return render (request, self.template_name)
 
 def advert_list(request):

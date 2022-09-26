@@ -65,6 +65,7 @@
           <label for="exampleInputPassword1">Password</label>
           <input type="password" class="form-control" id="exampleInputPassword1" name="password" class="Password">
           <i class="fa fa-eye login-eye" id="show-password"></i>
+          <input type="hidden" name="next" value="{{ request.GET.next }}"/>
         </div>
         <input type="submit" value="Login" class="btn btn-outline-primary">
       </form>

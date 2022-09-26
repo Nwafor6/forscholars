@@ -32,7 +32,7 @@
           </h5>
           <div class="categories"><strong><span style="color: red;">Categories:</span></strong>
             {%for category in categories%}
-            <span class="badge badge-pill badge-secondary"><a href="{%url 'category' category.pk %}" style="color:white;">{{category.title}}</a></span>
+            <span class="badge badge-pill badge-secondary"><a href="{%url 'category' category.pk %}" style="color:white;">{{category.title|safe}}</a></span>
             {%endfor%}
           </div>
         </div>
@@ -73,8 +73,8 @@
                   </div>
                   <div class="col-md-8">
                     <div class="card-body">
-                      <h5 class="card-title">{{blog.title}}</h5>
-                      <p class="card-text">{{blog.body|slice:":100"}}</p>
+                      <h5 class="card-title">{{blog.title|safe}}</h5>
+                      <p class="card-text">{{blog.body|slice:":100"|safe}}</p>
                       <p class="card-text"><small class="text-muted"><a href="{%url '_blog' blog.slug%}">
                 Read More
               </a></small></p>

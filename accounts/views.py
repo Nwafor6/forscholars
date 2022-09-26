@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.contrib.messages import get_messages
 from .models import CustomUser as User, Profile
 from django.contrib.auth import authenticate, login, logout
@@ -49,6 +50,8 @@ def loginView(request):
 	if  request.method == "POST":
 		email=request.POST.get('email')
 		password=request.POST.get('password')
+		redirect_to=request.POST.get('next')
+		print(redirect_to,'.........')
 
 		try:
 			user = User.objects.get(email=email)
@@ -57,7 +60,10 @@ def loginView(request):
 		user= authenticate(request, email=email, password=password)
 		if user is not None:
 			login(request, user)
-			return redirect('home')
+			try:
+				return redirect(redirect_to)
+			except:
+				return redirect('home')
 		else:
 			messages.error(request, 'or username or password incorrect')
 	return render(request, 'accounts/register_login.html', {'page':page} )	
