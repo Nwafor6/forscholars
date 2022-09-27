@@ -4,6 +4,7 @@
 {% block title%}Home{% endblock%}
 {%block content%}
 <style>
+
   .col-md-4 > img{
     height: 100%;
     width: 100%;
@@ -42,7 +43,15 @@
   padding: 10px;
   font-size: 12px;
 }
-
+@media(max-width: 450px){
+  .item{
+  display: block;
+    }
+    .item-img img{
+  width: 100%;
+  height: 100%;
+    }
+}
 
 @keyframes blinker{
   50%{
@@ -62,24 +71,32 @@
          <p style="color:red">Items in this forum are approved before displayed to potential buyers, but we still will like to warn you to make sure good are in good condition before making payments</p>
          <p><a href="{%url 'advertise' %}" class="btn btn-secondary">Sell Item</a></p>
       </div>
-        <div class="row ">
-          <div class="col-md-7 p-4 card">
-            {% for item in page_obj%}
-              <div class="item  shadow">
+      <div id="spinner"><div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>
+        <div class="row " >
+          <div class="col-md-7 p-4">
+            <div id="items">
+              {% for item in page_obj%}
+             <div>
+                <div class="item  shadow">
                 <div class="item-img p-3">
                   {%if item.product_cover_image%}
                   <img src="{{item.product_cover_image.url}}" alt="{{item.prouct_name}} image">
                   {%endif%}
                 </div>
                 <div class="item-body p-3">
-                  <a href="{% url 'item-detail' item.pk %}"><h6>{{item.product_name|safe}}</h6></a>
+                  <div class="row">
+                    <div class="col-md-6"><a href="{% url 'item-detail' item.pk %}"><h6>{{item.product_name|safe}}</h6></a></div>
+                    <div class="col-md-6"><a href="{% url 'update-advertise' item.pk %}"><h6>Edit</h6></a></div>
+                  </div>
                   <p><small>Posted: {{item.posted_on|timesince}}</small></p>
                   <p>Price: {{item.description|slice:":300" |safe}}</p>
                   <p>Price: #<span>{{item.product_price|safe}}</span></p>
                   <h6>Category: {{item.product_category|safe}}</h6>
                 </div>
               </div>
+             </div>
             {%endfor%}
+            </div>
           </div>
           <div class="col-md-4">
           <div class="row">
@@ -89,7 +106,7 @@
                <div class="content">
                   <p class="card-text">
                   We can connect your business to potential buys and sellers. Our marketing services are top notche. Show you products to over our 40k+ user today by clicking the button to contact our marketing team. Earn as you learn...  </p>
-                  <p><a href="{%url 'advertise'%}" class="btn btn-secondary blink">Advertise</a></p>
+                  <p><a href="{%url 'paid-advert'%}" class="btn btn-secondary blink">Advertise</a></p>
                </div>
                <div class="subscribers-online mt-2" style="display: flex; gap:35px; font-size:3px">
                  <div class="subscribers">
@@ -128,7 +145,28 @@
   </section>
   <!-- end catagory section -->
 
- 
+ <script>
+   
+   let items = document.querySelector("#items").style.display="none";
+   let spinner = document.querySelector("#spinner").style.display="block";
+   $.ajax({
+    type:'GET',
+    url:"{%url 'buy-and-sell'%}",
+    success:function(res){
+      setTimeout(()=>{
+      console.log("success")
+      spinner = document.querySelector("#spinner").innerHTML="";
+      items = document.querySelector("#items").style.display="block";
+      
+
+      }, 900)
+      
+    },
+    error:function(er){
+      console.log("error")
+    }
+   })
+ </script>
 
  {% endblock%}
  
