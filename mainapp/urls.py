@@ -30,7 +30,6 @@ urlpatterns =[
 
 	# paid advert
 	path('my-product/advertise', views.PaidAdvertView.as_view(), name='paid-advert'),
-	path('update/my-product/advertise/', views.PaidAdvertView.as_view(), name='up-paid-advert'),
 
 	# terms and condiction
 	path('terms&conditions/', views.terms_condiction, name='terms&conditions'),

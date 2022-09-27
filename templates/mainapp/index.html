@@ -35,6 +35,9 @@
       .layout_padding {
     padding: 34px 0;
     }
+    .pdt-bg{
+
+    }
     </style>
   <div id="slider_section">
     <section class="slider_section " style="background-image:linear-gradient(rgba(4, 9, 30, 0.7),rgba(4, 9, 30, 0.7)), url({%static 'images/bg.jpg'%})">
@@ -46,7 +49,7 @@
                 <div class="col-md-6">
                   <div class="detail-box">
                     <h5>
-                      4Scholars Community For
+                      ScholarsJoint For
                     </h5>
                     <h1>
                       For Academic Excellence
@@ -68,7 +71,7 @@
                 <div class="col-md-6">
                   <div class="detail-box">
                     <h5>
-                      4Scholars Community For
+                      ScholarsJoint  For
                     </h5>
                     <h1>
                       Self Development and Potentials
@@ -95,7 +98,7 @@
                 <div class="col-md-6">
                   <div class="detail-box">
                     <h5>
-                      4Scholars Community For
+                      ScholarsJoint  For
                     </h5>
                     <h1>
                       Improving Your Networks 
@@ -299,7 +302,7 @@
 
   <!-- client section -->
 
-  <section class="client_section layout_padding " data-aos="zoom-in-up">
+  <!-- <section class="client_section layout_padding " data-aos="zoom-in-up">
     <div class="container bg-light shadow p-3">
       <div class="heading_container heading_center">
         <h2>
@@ -312,7 +315,7 @@
           <div class="client_container ">
             <div class="detail-box">
               <p>
-                Nwafor Glory is the founder of  4Scholars community. He is Geophysicist, a web developer, graphics designer and a writer. He is passionate about education and devloping others.
+                Nwafor Glory is the founder of  ScholarsJoint . He is Geophysicist, a web developer, graphics designer and a writer. He is passionate about education and devloping others.
               </p>
               <span>
                 <i class="fa fa-quote-left" aria-hidden="true"></i>
@@ -361,7 +364,7 @@
       </div>
     </div>
   </section>
-
+ -->
   <!-- end client section -->
 
    <!-- whyus section -->
@@ -476,6 +479,43 @@
             {%endfor%}
           </div> 
            <div class="text-center mt-3"><a class="btn btn-outline-primary mr-3" href="{%url 'blog'%}">See All</a></div> 
+        </div>  
+      </section>
+      <!-- End calto-action Area -->
+
+    <!--  Start callto-action Area -->
+     <section class="blog_section layout_padding" style="background-color: white;" data-aos="zoom-in-left">
+        <div class="container">
+          <div class="heading_container heading_center">
+            <h1>
+              Market
+            </h1>
+            <div>
+              <div class="categories"><strong><span style="color: red;">Categories:</span> All</strong>
+                <p>Our market place is free. Upload your items to our user on scholarsjoint for  <span style="color:red"> free</span>. </p>
+              </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="callto-action-area section-gap mb-5 mt-3 " id="join" data-aos="zoom-out-up">
+        <div class="container">
+          <div class="row d-flelx justify-content-centelr">
+            {%for ad in adverts%}
+            <div class="menu-content col-lg-4 col-md-4 col-sm-12">
+               <div class="card mb-2" >
+                <img src="{{ad.product_cover_image.url}}" class="img-fluid" alt="..."  height="10">
+                <div class="card-body">
+                    <h6 class="text-center">{{ad.product_name|safe}}</h6>
+                    <p class="text-center">Price: #{{ad.product_price|safe}}</p>
+                    <p class="text-center">{{ad.product_location|safe}}</p>
+                    <p class="text-center"><a href="{%url 'item-detail' ad.pk%}" >View Item</a></p>
+                </div>
+              </div>
+            </div>
+            {%endfor%}
+          </div> 
+           <div class="text-center mt-3"><a class="btn btn-outline-primary mr-3" href="{%url 'buy-and-sell'%}">See All</a></div> 
         </div>  
       </section>
       <!-- End calto-action Area -->

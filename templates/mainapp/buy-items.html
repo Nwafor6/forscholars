@@ -86,7 +86,9 @@
                 <div class="item-body p-3">
                   <div class="row">
                     <div class="col-md-6"><a href="{% url 'item-detail' item.pk %}"><h6>{{item.product_name|safe}}</h6></a></div>
+                    {%if request.user == item.user%}
                     <div class="col-md-6"><a href="{% url 'update-advertise' item.pk %}"><h6>Edit</h6></a></div>
+                    {%endif%}
                   </div>
                   <p><small>Posted: {{item.posted_on|timesince}}</small></p>
                   <p>Price: {{item.description|slice:":300" |safe}}</p>
@@ -101,7 +103,7 @@
           <div class="col-md-4">
           <div class="row">
             <div class="card bg-light mb-3" style="max-width: 18rem;">
-              <div class="card-header" style="background-color:#BBBDBF"><h6><strong>Forscholars Marketing Services</strong></h6></div>
+              <div class="card-header" style="background-color:#BBBDBF"><h6><strong>ScholarsJoint Marketing Services</strong></h6></div>
               <div class="card-body">
                <div class="content">
                   <p class="card-text">

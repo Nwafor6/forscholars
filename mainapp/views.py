@@ -18,10 +18,11 @@ import random
 
 def home(request):
 	blogs=Blog.objects.all()[:6]
+	adverts=Advert.objects.all()[:6]
 	# if len(blog) !=0 and len (blog) >=3:
 	# 	blog=Blog.objects.all()[:2]
 
-	return render (request, 'mainapp/index.html', {'blogs':blogs})
+	return render (request, 'mainapp/index.html', {'blogs':blogs, 'adverts':adverts})
 
 
 def privacy(request):
@@ -288,29 +289,6 @@ class PaidAdvertView(LoginRequiredMixin,CreateView):
 			
 		return render (request, self.template_name)
 
-class PaidAdvertView(LoginRequiredMixin,UpdateView):
-	login_url = 'accounts/login/'
-	form_class=PaidAdvertForm
-	model=Advert
-	success_url='home'
-	template_name='mainapp/paid-advert.html'
-
-	def post(self,request, *args, **kwargs):
-		form=PaidAdvertForm(request.POST, request.FILES)
-		user=request.user
-		if form.is_valid():
-			data=form.cleaned_data
-			owner=form.save(commit=False)
-			owner.user=user
-			owner.save()
-			images=request.FILES.getlist('images')
-			if images:
-				for  image in images:
-					product_images=AdvertImages.objects.create(advert=owner, product_image=image)
-					product_images.save()
-					return redirect('update/my-product/advertise/')
-			
-		return render (request, self.template_name)
 
 def advert_list(request):
 	advert=Advert.objects.all()

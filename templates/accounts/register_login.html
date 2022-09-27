@@ -36,7 +36,7 @@
     <!-- Sign-in -->
   {% if page == 'reg' %} 
    <div class="register_bg shadow reg-alone ">
-    <h5 class="text-center">Join 4Scholars</h5>
+    <h5 class="text-center">Join ScholarsJoint</h5>
     <p>Fill your details, hit submit and see magic <i class="fa fa-smile-o" aria-hidden="true"></i><i class="fa fa-smile-o" aria-hidden="true"></i><i class="fa fa-smile-o" aria-hidden="true"></i><i class="fa fa-smile-o" aria-hidden="true"></i></p>
       <form method="post" class="form">
         {% csrf_token%}
@@ -46,7 +46,7 @@
         <input type="submit" value="Register" class="btn btn-outline-primary">
       </form>
       <div class="sign-in"><a href="{%url 'login'%}" >Sign in</a></div>
-      <div class="logo"><h6 class="text-right" style="font-size: 11px;">4Scholars</h6></div>
+      <div class="logo"><h6 class="text-right" style="font-size: 11px;">ScholarsJoint </h6></div>
    </div>
    <!-- End Sign-in -->
    <!-- Register -->
@@ -70,7 +70,7 @@
         <input type="submit" value="Login" class="btn btn-outline-primary">
       </form>
       <div class="sign-in"><a href="{% url 'register'%}" >Register</a></div>
-      <div class="logo"><h6 class="text-right" style="font-size: 11px;">4Scholars</h6></div>
+      <div class="logo"><h6 class="text-right" style="font-size: 11px;">ScholarsJoint </h6></div>
       <small><a href="{%url 'password_reset'%}">Foget Password?</a></small>
     </div>
     <!-- End Register -->
@@ -87,7 +87,7 @@
           <button type="submit"class="btn btn-outline-primary mt-3"><i class="fa fa-floppy-o" aria-hidden="true" style="font-size: 31px;"></i></button>
         </div>
       </form>
-      <div class="logo"><h6 class="text-right" style="font-size: 11px;">4Scholars</h6></div>
+      <div class="logo"><h6 class="text-right" style="font-size: 11px;">ScholarsJoint </h6></div>
    </div>
    <!-- End of update profile -->
     {%else%}
@@ -96,7 +96,7 @@
       <h5 class="text-center">Logout</h5>
       <div class="logout_ques">Are you sure you want to leave <i class="fa fa-frown-o" aria-hidden="true"></i><i class="fa fa-frown-o" aria-hidden="true"></i>???</div>
       <div class="sign-in"><a href="{% url 'logout_2'%}" >Logout</a></div>
-      <div class="logo"><h6 class="text-right" style="font-size: 11px;">4Scholars</h6></div>
+      <div class="logo"><h6 class="text-right" style="font-size: 11px;">ScholarsJoint </h6></div>
     </div>
     <!-- End logout -->
     {%endif%}
