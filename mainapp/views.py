@@ -11,6 +11,8 @@ from django.views.generic.edit import CreateView,UpdateView,DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from django.core.mail import send_mail, BadHeaderError
+from django.template.loader import render_to_string
+from django.core.mail import EmailMultiAlternatives
 from django.conf import settings
 import random
 
@@ -213,16 +215,17 @@ def newsletter(request):
 			email=Newsletter.objects.get(email=request.POST.get('email'))
 			return HttpResponse('Already a subscriber! Enter a different email')
 		except:
-			subscribe=Newsletter.objects.create(email=request.POST.get('email'))
-			subscribe.save()
 			# send new subcribers mails
-			email=request.POST.get('email')
-			subject=f"Thank you for subscribing to our newsletter"
+			to_email=request.POST.get('email')
+			mail_subject=f""
 			from_email='forscholarsedu@gmail.com'
-			message=f"{email}, Thank you for subscribing to our newsletter, we post weeklyblog post and we will not fail to have you notified. Thank you from forscholars team!!"
-
+			message = render_to_string('partials/newletterconfirm.html')
+			msg = EmailMultiAlternatives(mail_subject, message, from_email, [to_email]) 
+			msg.attach_alternative(message, "text/html")  
 			try:
-				send_mail(subject, message, from_email, [email])
+				msg.send()
+				subscribe=Newsletter.objects.create(email=request.POST.get('email'))
+				subscribe.save() 
 			except BadHeaderError:
 				return HttpResponse('invalid header found.')
 
