@@ -234,7 +234,7 @@ def newsletter(request):
 
 #advert view
 class AdvertView(LoginRequiredMixin,CreateView):
-	login_url = 'accounts/login/'
+	login_url = '/accounts/login/'
 	form_class=AdvertForm
 	model=Advert
 	success_url='home'
@@ -258,7 +258,7 @@ class AdvertView(LoginRequiredMixin,CreateView):
 		return render (request, self.template_name)
 
 class AdvertUpdateView(LoginRequiredMixin,UpdateView):
-	login_url = 'accounts/login/'
+	login_url = '/accounts/login/'
 	form_class=AdvertForm
 	model=Advert
 	success_url='/buy-and-sell/'
@@ -269,7 +269,7 @@ class AdvertUpdateView(LoginRequiredMixin,UpdateView):
 	# 	return render (request, self.template_name)
 
 class PaidAdvertView(LoginRequiredMixin,CreateView):
-	login_url = 'accounts/login/'
+	login_url = '/accounts/login/'
 	form_class=PaidAdvertForm
 	model=Advert
 	success_url='home'
