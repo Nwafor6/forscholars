@@ -58,7 +58,7 @@
             <select class="form-control" id="exampleFormControlSelect1" name="q">
               <option value="All">All</option>
               {%for i in school%}
-              <option value="{{i.school_name}}" >{{i.school_name}}</option>
+              <option value="{{i.school_name}}" >{{i.school_name|safe}}</option>
               {%endfor%}
             </select>
             <input type="submit" value="Go" class="btn btn-sm btn-secondary m-2">
@@ -81,10 +81,10 @@
               </div>
               <div class="detail-box">
                 <h5>
-                  {{dept.title}}
+                  {{dept.title|safe}}
                 </h5>
               </div>
-              <div style="margin-top: 5px;"><h6><strong>Faculty:</strong> {{dept.faculty}}</h6></div
+              <div style="margin-top: 5px;"><h6><strong>Faculty:</strong> {{dept.faculty|safe}}</h6></div
               >
               <div style="margin-top: 5px;"><span class="badge badge-pill badge-primary">Text <a href="{%url 'text-books' dept.slug%}"style="color: white; text-decoration: none;">Books</a></span><span class="badge badge-pill badge-info"><a href="{%url 'past-questions' dept.slug%}"style="color: white; text-decoration: none;">Past Questions</a></span><span class="badge badge-pill badge-secondary"><a href="{%url 'hand-outs' dept.slug%}"style="color: white; text-decoration: none;">Hand Outs</a></span></div>
             </div>
@@ -117,7 +117,7 @@
             </div>
           </div>
           {%empty%}
-          <div>Please contact adminfdiuszogavotwaosujbhou</div>
+          <div>Please contact admin</div>
           {%endfor%}
         </div>
         {%endif%}

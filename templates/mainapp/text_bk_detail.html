@@ -40,14 +40,14 @@
               </div> -->
               <div class="detail-box">
                 <h5>
-                  <a href="{%url 'books' pq.slug%}">{{pq.title}}</a>
+                  <a href="{%url 'books' pq.slug%}">{{pq.title|safe}}</a>
                 </h5>
                <!--  <p>
                   {{pq.about_book}}
                 </p> -->
-                <div><span class="badge badge-pill badge-primary">course: {{pq.title|slice:":20"}}..</span></div>
-                 <div><span class="badge badge-pill badge-primary">Semester: {{pq.semester}}</span></div>
-                 <div><span class="badge badge-pill badge-primary">Year: {{pq.year}}</span></div>
+                <div><span class="badge badge-pill badge-primary">course: {{pq.title|slice:":20"|safe}}..</span></div>
+                 <div><span class="badge badge-pill badge-primary">Semester: {{pq.semester|safe}}</span></div>
+                 <div><span class="badge badge-pill badge-primary">Year: {{pq.year|safe}}</span></div>
                  <span class="badge badge-pill badge-info"><a href="{{pq.file.url}}" style="color: white; text-decoration:none" download><i class="fa fa-cloud-download" aria-hidden="true"></i></a></span>
                  <!-- <div style="margin-top: 5px;"></div> -->
               </div>
@@ -70,13 +70,13 @@
               </div> -->
               <div class="detail-box">
                 <h5>
-                  <a href="{%url 'books' tb.slug%}">{{tb.title}}</a>
+                  <a href="{%url 'books' tb.slug%}">{{tb.title|safe}}</a>
                 </h5>
                <!--  <p>
                   {{pq.about_book}}
                 </p> -->
-                 <div><span class="badge badge-pill badge-primary">Semester: {{tb.semester}}</span></div>
-                 <div><span class="badge badge-pill badge-primary">Year: {{tb.year}}</span></div>
+                 <div><span class="badge badge-pill badge-primary">Semester: {{tb.semester|safe}}</span></div>
+                 <div><span class="badge badge-pill badge-primary">Year: {{tb.year|safe}}</span></div>
                  <span class="badge badge-pill badge-warning"><a href="{{tb.file.url}}" style="color: white; text-decoration:none" download><i class="fa fa-cloud-download" aria-hidden="true"></i></a></span>
                  <!-- <div style="margin-top: 5px;"></div> -->
               </div>
@@ -98,13 +98,13 @@
               </div> -->
               <div class="detail-box">
                 <h5>
-                  <a href="{%url 'books' ho.slug%}">{{ho.title}}</a>
+                  <a href="{%url 'books' ho.slug%}">{{ho.title|safe}}</a>
                 </h5>
                <!--  <p>
                   {{pq.about_book}}
                 </p> -->
-                 <div><span class="badge badge-pill badge-primary">Semester: {{ho.semester}}</span></div>
-                 <div><span class="badge badge-pill badge-primary">Year: {{ho.year}}</span></div>
+                 <div><span class="badge badge-pill badge-primary">Semester: {{ho.semester|safe}}</span></div>
+                 <div><span class="badge badge-pill badge-primary">Year: {{ho.year|safe}}</span></div>
                  <div class="spinner-border " role="status" style="display: none;">
                   <span class="sr-only"></span>
                 </div>
@@ -130,17 +130,17 @@
               </div>
               <div class="detail-box">
                 <h5>
-                  {{ho.title}}
+                  {{ho.title|safe}}
                 </h5>
                <!--  <p>
                   {{pq.about_book}}
                 </p> -->
-                 <div><span class="badge badge-pill badge-primary">Semester: {{ho.semester}}</span></div>
-                 <div><span class="badge badge-pill badge-primary">Year: {{ho.year}}</span></div>
+                 <div><span class="badge badge-pill badge-primary">Semester: {{ho.semester|safe}}</span></div>
+                 <div><span class="badge badge-pill badge-primary">Year: {{ho.year|safe}}</span></div>
                  <div class="spinner-border " role="status" style="display: none;">
                   <span class="sr-only"></span>
                 </div>
-                <span class="badge badge-pill badge-warning "><a href="{{ho.file.url}}" style="color: white; text-decoration:none;" download class="download"><i class="fa fa-cloud-download" aria-hidden="true"></i></a>
+                <span class="badge badge-pill badge-warning "><a href="{{ho.file}}" style="color: white; text-decoration:none;" download class="download"><i class="fa fa-cloud-download" aria-hidden="true"></i></a>
 
                  <!-- <div style="margin-top: 5px;"></div> -->
               </div>

@@ -83,7 +83,7 @@
                   <h5 class="card-title">{{book.title}}</h5>
                   <p class="card-text"> <strong style="color: red">Book info : </strong>This book is a  <mark>{{book.semester}}</mark> semester <mark>{{book.file_type}}</mark> for <mark>{{book.year}}</mark> studets in the department of <mark>{{book.department}}</mark> in <mark>{{book.department.school}}</mark></p>
                   <p class="card-text">{{book.about_book}}</p>
-                  <p>Download <span class="badge badge-pill badge-warning"><a href="{{book.file.url}}" style="color: white; text-decoration:none" download><i class="fa fa-cloud-download blink" aria-hidden="true"></i></a></span></p>
+                  <p>Download <span class="badge badge-pill badge-warning"><a href="{{book.file}}" style="color: white; text-decoration:none" download><i class="fa fa-cloud-download blink" aria-hidden="true"></i></a></span></p>
                   <p class="card-text"><small class="text-muted">Posted: {{book.posted_on}}</small></p>
                    {%if x_advert%}
                      <div class='Geekymalik-Ads jhfdiuh0 ' id='Geekymalik-Ads' >

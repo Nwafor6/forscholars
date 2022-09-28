@@ -19,12 +19,13 @@ type_category=[
 	('Texts Books', 'Texts Books'),
 	('Past Questions', 'Past Questions'),
 	('Hand Outs', 'Hand Outs'),
+	('Journal', 'Journal'),
 ]
 
 class School(models.Model):
 	school_name=models.CharField(max_length=200, unique=True)
 	slug=models.SlugField()
-	logo=models.ImageField(null=True, blank=True)
+	logo=models.URLField(null=True, blank=True)
 
 	def __str__(self):
 		return self.school_name
@@ -39,7 +40,7 @@ class School(models.Model):
 class Department(models.Model):
 	school=models.ForeignKey(School, models.SET_NULL, null=True, blank=True)
 	title=models.CharField(max_length=200)
-	cover_img=models.ImageField(blank=True, null=True)
+	cover_img=models.URLField(blank=True, null=True)
 	faculty=models.CharField(max_length=50)
 	slug=models.SlugField()
 
@@ -58,15 +59,16 @@ class BookCategory(models.Model):
 	user=models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True)
 	department=models.ForeignKey(Department, on_delete=models.CASCADE)
 	title=models.CharField(max_length=200)
-	course_code=models.CharField(max_length=50, blank=True, null=True)
-	about_book=models.CharField(max_length=200, blank=True, null=True)
+	course_code=models.CharField(max_length=50)
+	about_book=models.CharField(max_length=200)
 	slug=models.SlugField()
-	file=models.FileField()
+	file=models.URLField()
 	file_type=models.CharField(max_length=20, choices=type_category)
 	cover_img=models.ImageField(blank=True, null=True)
 	semester=models.CharField(max_length=20, choices=semester_category)
 	year=models.CharField(max_length=20, choices=year_category)
 	posted_on=models.DateTimeField(auto_now_add=True)
+
 	class Meta:
 		verbose_name_plural=('BookCategories')
 

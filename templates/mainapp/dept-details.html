@@ -1,4 +1,4 @@
-{% extends 'partials/base.html'%}
+|safe{% extends 'partials/base.html'%}
 {%load static%}
 {% block title%}Home{% endblock%}
 {%block content%}
@@ -37,11 +37,11 @@
               <tr>
                 {%for pq in dept_detail%}
                 <th scope="row">{{forloop.counter}}</th>
-                <td>{{pq.title}}</td>
-                <td>{{pq.course_code}}</td>
-                <td>{{pq.file_type}}</td>
-                <td>{{pq.semester}}</td>
-                <td>{{pq.year}}</td>
+                <td>{{pq.title|safe}}</td>
+                <td>{{pq.course_code|safe}}</td>
+                <td>{{pq.file_type|safe}}</td>
+                <td>{{pq.semester|safe}}</td>
+                <td>{{pq.year|safe}}</td>
               </tr>
              {%endfor%}
             </tbody>
@@ -65,11 +65,11 @@
               <tr>
                 {%for pq in dept_detail_2%}
                 <th scope="row">{{forloop.counter}}</th>
-                <td>{{pq.title}}</td>
-                <td>{{pq.course_code}}</td>
-                <td>{{pq.file_type}}</td>
-                <td>{{pq.semester}}</td>
-                <td>{{pq.year}}</td>
+                <td>{{pq.title|safe}}</td>
+                <td>{{pq.course_code|safe}}</td>
+                <td>{{pq.file_type|safe}}</td>
+                <td>{{pq.semeste|safer}}</td>
+                <td>{{pq.year|safe}}</td>
               </tr>
              {%endfor%}
             </tbody>
@@ -93,11 +93,11 @@
               <tr>
                 {%for pq in dept_detail_3%}
                 <th scope="row">{{forloop.counter}}</th>
-                <td>{{pq.title}}</td>
-                <td>{{pq.course_code}}</td>
-                <td>{{pq.file_type}}</td>
-                <td>{{pq.semester}}</td>
-                <td>{{pq.year}}</td>
+                <td>{{pq.title|safe}}</td>
+                <td>{{pq.course_code|safe}}</td>
+                <td>{{pq.file_typ|safee}}</td>
+                <td>{{pq.semester|safe}}</td>
+                <td>{{pq.year|safe}}</td>
               </tr>
              {%endfor%}
             </tbody>
@@ -121,11 +121,11 @@
               <tr>
                 {%for pq in dept_detail_4%}
                 <th scope="row">{{forloop.counter}}</th>
-                <td>{{pq.title}}</td>
-                <td>{{pq.course_code}}</td>
-                <td>{{pq.file_type}}</td>
-                <td>{{pq.semester}}</td>
-                <td>{{pq.year}}</td>
+                <td>{{pq.title|safe}}</td>
+                <td>{{pq.course_code|safe}}</td>
+                <td>{{pq.file_type|safe}}</td>
+                <td>{{pq.semester|safe}}</td>
+                <td>{{pq.year|safe}}</td>
               </tr>
              {%endfor%}
             </tbody>
