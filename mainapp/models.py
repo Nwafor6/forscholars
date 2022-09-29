@@ -25,6 +25,7 @@ type_category=[
 class School(models.Model):
 	school_name=models.CharField(max_length=200, unique=True)
 	slug=models.SlugField()
+
 	logo=models.URLField(null=True, blank=True)
 
 	def __str__(self):
@@ -60,11 +61,11 @@ class BookCategory(models.Model):
 	department=models.ForeignKey(Department, on_delete=models.CASCADE)
 	title=models.CharField(max_length=200)
 	course_code=models.CharField(max_length=50)
-	about_book=models.CharField(max_length=200)
+	about_book=models.CharField(max_length=200, blank=True, null=True)
 	slug=models.SlugField()
-	file=models.URLField()
+	file=models.URLField(help_text='Enter file link')
 	file_type=models.CharField(max_length=20, choices=type_category)
-	cover_img=models.ImageField(blank=True, null=True)
+	cover_img=models.ImageField(blank=True, null=True,help_text='upload image if available')
 	semester=models.CharField(max_length=20, choices=semester_category)
 	year=models.CharField(max_length=20, choices=year_category)
 	posted_on=models.DateTimeField(auto_now_add=True)
@@ -77,7 +78,7 @@ class BookCategory(models.Model):
 
 	def save(self, *args, **kwargs):
 		if not self.slug:
-			self.slug=slugify(self.title+self.id)
+			self.slug=slugify(self.title + str(self.id))
 		super(BookCategory, self).save(*args,**kwargs)
 
 

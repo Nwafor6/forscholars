@@ -81,12 +81,14 @@
               </div>
               <div class="detail-box">
                 <h5>
-                  {{dept.title|safe}}
+                  {{dept.title|safe}} 
                 </h5>
               </div>
+              <div style="margin-top: 5px;"><h6><strong>school:</strong> {{dept.school|safe}}</h6></div
+              >
               <div style="margin-top: 5px;"><h6><strong>Faculty:</strong> {{dept.faculty|safe}}</h6></div
               >
-              <div style="margin-top: 5px;"><span class="badge badge-pill badge-primary">Text <a href="{%url 'text-books' dept.slug%}"style="color: white; text-decoration: none;">Books</a></span><span class="badge badge-pill badge-info"><a href="{%url 'past-questions' dept.slug%}"style="color: white; text-decoration: none;">Past Questions</a></span><span class="badge badge-pill badge-secondary"><a href="{%url 'hand-outs' dept.slug%}"style="color: white; text-decoration: none;">Hand Outs</a></span></div>
+              <div style="margin-top: 5px;"><span class="badge badge-pill badge-primary">Text <a href="{%url 'text-books' dept.pk%}"style="color: white; text-decoration: none;">Books</a></span><span class="badge badge-pill badge-info"><a href="{%url 'past-questions' dept.pk%}"style="color: white; text-decoration: none;">Past Questions</a></span><span class="badge badge-pill badge-secondary"><a href="{%url 'hand-outs' dept.pk%}"style="color: white; text-decoration: none;">Hand Outs</a></span></div>
             </div>
           </div>
           {%empty%}
@@ -108,12 +110,12 @@
               </div>
               <div class="detail-box">
                 <h5>
-                  {{dept.title}}
+                  {{dept.title|safe}} 
                 </h5>
               </div>
               <div style="margin-top: 5px;"><h6><strong>Faculty:</strong> {{dept.faculty}}</h6></div
               >
-              <div style="margin-top: 5px;"><span class="badge badge-pill badge-primary">Text <a href="{%url 'text-books' dept.slug%}"style="color: white; text-decoration: none;">Books</a></span><span class="badge badge-pill badge-info"><a href="{%url 'past-questions' dept.slug%}"style="color: white; text-decoration: none;">Past Questions</a></span><span class="badge badge-pill badge-secondary"><a href="{%url 'hand-outs' dept.slug%}"style="color: white; text-decoration: none;">Hand Outs</a></span></div>
+              <div style="margin-top: 5px;"><span class="badge badge-pill badge-primary">Text <a href="{%url 'text-books' dept.pk%}"style="color: white; text-decoration: none;">Books</a></span><span class="badge badge-pill badge-info"><a href="{%url 'past-questions' dept.pk%}"style="color: white; text-decoration: none;">Past Questions</a></span><span class="badge badge-pill badge-secondary"><a href="{%url 'hand-outs' dept.pk%}"style="color: white; text-decoration: none;">Hand Outs</a></span></div>
             </div>
           </div>
           {%empty%}

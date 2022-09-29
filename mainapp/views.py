@@ -5,7 +5,7 @@ from django.core.paginator import Paginator
 from django.urls import reverse
 from accounts.models import Profile, CustomUser as User
 from .models import BookCategory, Department, ContactUs, Blog, Comment, Newsletter, Advert, ProductCategory, School, AdvertImages, BlogImages, Category
-from .forms  import CommentUpdateForm, AdvertForm, PaidAdvertForm
+from .forms  import CommentUpdateForm, AdvertForm, PaidAdvertForm,ShareBookForm
 from django.views.generic import ListView,DetailView
 from django.views.generic.edit import CreateView,UpdateView,DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -33,10 +33,6 @@ def privacy(request):
 
 def terms_condiction(request):
 	return render(request, 'mainapp/terms-condition.html')
-
-
-
-
 
 
 
@@ -119,11 +115,12 @@ class DepartmentView(ListView):
 	template_name='mainapp/departments.html'
 	context_object_name='departments'
 
-	# def get_context_data(self, *args, **kwargs):
-	# 	context=super().get_context_data(**kwargs)
-	# 	context['school']=School.objects.all()
-	# 	context['departments']=Department.objects.all()
-	# 	return context
+	def get_context_data(self, *args, **kwargs):
+		context=super().get_context_data(**kwargs)
+		# context['school']=School.objects.all()
+		context['departments']=Department.objects.all()
+		return context
+
 def filter_processing(request):
 	if request.method=='GET':
 		q=request.GET.get('q')
@@ -136,34 +133,82 @@ def filter_processing(request):
 	else:
 		return redirect ('departments')
 
-def bookdetailview(request, slug):
-	book=BookCategory.objects.get(slug=slug)
+
+# User upload books 
+class ShareBookView(LoginRequiredMixin,CreateView):
+	login_url = '/accounts/login/'
+	form_class=ShareBookForm
+	model=BookCategory
+	# success_url='home'
+	template_name='mainapp/share-book.html'
+
+	def post(self,request, *args, **kwargs):
+		form=ShareBookForm(request.POST, request.FILES)
+		user=request.user
+		dept=request.POST.get('department')
+		sch_id=request.POST.get('school')
+		faculty=request.POST.get('faculty')
+		school=School.objects.get(id=sch_id)
+
+		if form.is_valid():
+			try:
+				dept=Department.objects.get(school=school, title=dept, faculty=faculty)
+			except:
+				dept=Department.objects.create(school=school, title=dept, faculty=faculty)
+			data=form.cleaned_data
+			owner=form.save(commit=False)
+			owner.user=user
+			owner.department=dept
+			owner.save()
+
+			
+			# # school=School.school_name
+			# # print(school,'.........')
+			# dept=request.POST.get('department')
+			# dept=Department.objects.get(id=dept)
+			# faculty=request.POST.get('faculty')
+			# dept=Department.objects.get_or_create(school=school, title=dept, faculty=faculty)
+			book=BookCategory.objects.get(pk=owner.pk)
+			return redirect('books', book.pk)
+			
+		return render (request, self.template_name)
+
+#Edit shared book
+class UpdateShareBookView(ShareBookView,UpdateView):
+	login_url = '/accounts/login/'
+	form_class=ShareBookForm
+	model=BookCategory
+	# success_url='home'
+	template_name='mainapp/share-book.html'
+
+def bookdetailview(request, pk):
+	book=BookCategory.objects.get(pk=pk)
 	related=book.department
 	related=BookCategory.objects.filter(department=related)
 	return render (request, 'mainapp/bookdetailview.html', {'book':book, 'related':related})
 
 
-def dept_PQ_detail(request,slug):
+def dept_PQ_detail(request,pk):
 
 	page='pq'
-	dept=Department.objects.get(slug=slug)
+	dept=Department.objects.get(pk=pk)
 	dept_detail= dept.bookcategory_set.filter(file_type='Past Questions')
 
 	
 	return render (request, 'mainapp/text_bk_detail.html', {'dept_detail':dept_detail, 'dept':dept, 'page':page})
 
-def dept_TB_detail(request,slug):
+def dept_TB_detail(request,pk):
 
-	dept=Department.objects.get(slug=slug)
+	dept=Department.objects.get(pk=pk)
 	dept_detail= dept.bookcategory_set.filter(file_type='Texts Books')
 
 	page='tb'
 	return render (request, 'mainapp/text_bk_detail.html', {'dept_detail':dept_detail, 'dept':dept, 'page':page})
 
 
-def dept_HO_detail(request,slug):
+def dept_HO_detail(request,pk):
 
-	dept=Department.objects.get(slug=slug)
+	dept=Department.objects.get(pk=pk)
 	dept_detail= dept.bookcategory_set.filter(file_type='Hand Outs')
 
 	page='ho'

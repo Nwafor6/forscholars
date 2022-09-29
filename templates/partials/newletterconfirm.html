@@ -1,3 +1,4 @@
+{% autoescape off %}
 <!doctype html>
 <html lang="en">
   <head>
@@ -34,30 +35,38 @@
         margin: 5px;
 
       }
+      p{
+        margin-bottom: 0;
+      }
     </style>
   </head>
-  <body>
-    <section class="" style="padding: 20px;">
-      <div class=""><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTa3k6RRmc5N6wtl3MkZtoOebbYZPHfadSPbd2D1GZUZUVjcz2-pM39v3lqZt3C8_r8ozc&usqp=CAU"></div>
+  <body style="background-color: #f1f1f1;padding: 20px; style="line-height: 40px;">
+    <section class="" style=" background-color: #ffffff;padding: 10px;">
       <div>
-        <h5 class="" style="text-align: center; margin-bottom: 40px;">ScholarsJoint</h5>
-        <h6>Hello There</h6>
+        <h2 class="" style="text-align: center; margin-bottom: 40px; background: #063547; color: #ffffff; padding: 10px;">ScholarsJoint</h2>
       </div>
+      <div style="text-align:center;"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTa3k6RRmc5N6wtl3MkZtoOebbYZPHfadSPbd2D1GZUZUVjcz2-pM39v3lqZt3C8_r8ozc&usqp=CAU"></div>
       <div>
-        <p>Thank you for signing up for our news letter. We're thrilled to have you on board. We do not spams our users. we promise to give you the best user experience.</p>
+        <p style="margin: 10px 0;">Hello there,</p>
+        <p>Thank you for signing up for our newsletter. We're thrilled to have you on board. We do not spams our users. we promise to give you the best user experience.</p>
         <p style="marks: 5px;">
           Thank You<br>
           Team ScholarsJoint
         </p>
       </div>
-      <footer style="text-align: center;"><hr>
+      <footer style="text-align: center; margin-top: 20px;background: #063547; color: #ffffff;padding: 10px;">
         <div class="">
-        <h5 class=" "><span class="kk">ScholarsJoint</span></h5>
-        <p class="  "><a href="http://www.scholarsjoint.com.ng" class="kk">www.scholarsjoint.com.ng</a></p>
-         <p class=" "><a href="Tel: +2347025065702" class="kk">Hire Us</a></p>
-          <p class=""><a href="http://www.scholarsjoint.com.ng" class="kk">Contact Us</a></p>
+        <h4 style="color: #ffffff;border-radius: 4px; padding: 7px; margin-top: 5px;"><span >ScholarsJoint</span><hr style="background-color:#ffffff"></h4>
+         <p style="color: #ffffff;border-radius: 4px; padding: 7px; margin-top: 5px;"><a href="http://www.scholarsjoint.com.ng" style="border-radius: 4px; padding: 5px; text-decoration:none; color: #ffffff;">Hire Us</a></p>
+         <p style="color: green;border-radius: 4px; padding: 7px; margin-top: 5px;"><a href="http://www.scholarsjoint.com.ng" style="border-radius: 4px; padding: 5px; text-decoration:none; color: #ffffff;">Contact Us</a></p>
+         <p style="color: green;border-radius: 4px; padding: 7px; margin-top: 5px;"><a href="http://www.scholarsjoint.com.ng" style="border-radius: 4px; padding: 5px; text-decoration:none; color: #ffffff;">www.scholarsjoint.com.ng</a></p>
       </div>
-        
+        <div>
+          <span><a href="" style="margin:2px; padding: 2px;"><img style="border-radius: 5px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Facebook_logo_%28square%29.png/640px-Facebook_logo_%28square%29.png" width="20" height="20" alt="facebook"></a></span>
+          <span><a href="" style="margin:2px; padding: 2px;"><img style="border-radius: 5px" src="https://pnggrid.com/wp-content/uploads/2021/04/whatsapp-logo-1024x1024.png"width="20" height="20" alt="whatsapp"></a></span>
+          <span><a href="" style="margin:2px; padding: 2px;"><img style="border-radius: 5px" src="https://cdn.worldvectorlogo.com/logos/twitter-3.svg"width="20" height="20" alt="twitter"></a></span>
+          <span><a href="" style="margin:2px; padding: 2px;"><img style="border-radius: 5px" src="https://www.freeiconspng.com/thumbs/linkedin-logo-png/linkedin-logo-3.png"width="20" height="20" alt="linkedln"></a></span>
+        </div>
       </footer>
     </section>
 
@@ -73,3 +82,4 @@
    
   </body>
 </html>
+{% endautoescape %}

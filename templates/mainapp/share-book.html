@@ -2,7 +2,7 @@
 {%load static%}
 {% load social_share %}
 {%load crispy_forms_tags%}
-{% block title%}Sell{% endblock%}
+{% block title%}Share Books{% endblock%}
 {%block content%}
 
   <!-- blog section -->
@@ -18,15 +18,14 @@
 </style>
   <section class=" layout_padding">
     <div class="container form">
-      <h2 class="text-center mb-5">Upload Products to our market</h2>
+      <h2 class="text-center mb-5">Upload Books</h2>
      <div class="row">
        <div class="col-sm-12 col-lg-6 advert shadow-sm">
         <form method="post" enctype="multipart/form-data">
         {%csrf_token%}
         {{form|crispy}}
-        {{imageform|crispy}}
         <button type="submit" class="btn btn-primary">
-          Submit
+          Upload
         </button>
       </form>
        </div>

@@ -9,7 +9,7 @@
     font-size: 20px;
   }
 
- .Geekymalik-Ads {
+ /*.Geekymalik-Ads {
      position:relative;
      bottom: 0px;
      left: 0;
@@ -23,6 +23,25 @@
      justify-content: center;
      background-color: #fefefe;
      z-index: 20;
+}*/
+.Geekymalik-Ads {
+    position: relative;
+    bottom: 0px;
+    /* left: 50px; */
+    /* right: 50px; */
+    width: 66%;
+    padding: 5px 5px;
+    box-shadow: 0 -6px 18px 0 rgb(9 32 76 / 10%);
+    -webkit-transition: all .1s ease-in;
+    transition: all .1s ease-in;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fefefe;
+    z-index: 20;
+    margin: 42px auto;
+    margin-top: 35px;
+    margin-bottom: 10px;
 }
  .Geekymalik-Ads-close {
      width: 30px;
@@ -104,8 +123,9 @@
                   <!-- *Show your product from database here* -->
 
                
-                   
-                    <img src="{{x_advert.product_cover_image.url}}" alt="hsdjgzb">
+                   {%if x_advert.product_cover_image%}
+                    <a href="{%url 'item-detail' x_advert.pk%}"><img src="{{x_advert.product_cover_image.url}}" alt="{{x_advert.product_name}}" class="img-fluid"></a>
+                    {%endif%}
                     </center>
                  </div>
               </div>

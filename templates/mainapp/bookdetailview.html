@@ -18,20 +18,24 @@
     font-size: 20px;
   }
 
- .Geekymalik-Ads {
-     position:relative;
-     bottom: 0px;
-     left: 0;
-     width: 100%;
-     padding: 5px 5px;
-     box-shadow: 0 -6px 18px 0 rgba(9,32,76,.1);
-     -webkit-transition: all .1s ease-in;
-     transition: all .1s ease-in;
-     display: flex;
-     align-items: center;
-     justify-content: center;
-     background-color: #fefefe;
-     z-index: 20;
+.Geekymalik-Ads {
+    position: relative;
+    bottom: 0px;
+    /* left: 50px; */
+    /* right: 50px; */
+    width: 66%;
+    padding: 5px 5px;
+    box-shadow: 0 -6px 18px 0 rgb(9 32 76 / 10%);
+    -webkit-transition: all .1s ease-in;
+    transition: all .1s ease-in;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fefefe;
+    z-index: 20;
+    margin: 42px auto;
+    margin-top: 35px;
+    margin-bottom: 10px;
 }
  .Geekymalik-Ads-close {
      width: 30px;
@@ -77,12 +81,13 @@
         <div class="row">
           <div class="col-md-7">
             <div class="card mb-3" style="max-width: 540px;">
+              {%if book.cover_img %}
               <img src="{{book.cover_img.url}}" alt="{{book.title}} image" class="img-fluid">
+              {%endif%}
               <div class="col-md-12">
                 <div class="card-body">
-                  <h5 class="card-title">{{book.title}}</h5>
-                  <p class="card-text"> <strong style="color: red">Book info : </strong>This book is a  <mark>{{book.semester}}</mark> semester <mark>{{book.file_type}}</mark> for <mark>{{book.year}}</mark> studets in the department of <mark>{{book.department}}</mark> in <mark>{{book.department.school}}</mark></p>
-                  <p class="card-text">{{book.about_book}}</p>
+                  <h5 class="card-title">{{book.title|safe}} {%if request.user == book.user%} <a href="{%url 'share-books-update' book.pk%}"><i class="fa fa-pencil-square-o" aria-hidden="true" style="font-size: 20px; float: right;"></i></a>{%endif%}</h5>
+                  <p class="card-text"> <strong style="color: red">Book info : </strong>This book is a  <mark>{{book.semester|safe}}</mark> semester <mark>{{book.file_type}}</mark> for <mark>{{book.year}}</mark> students in the department of <mark>{{book.department|safe}}</mark> in <mark>{{book.department.school|safe}}</mark></p>
                   <p>Download <span class="badge badge-pill badge-warning"><a href="{{book.file}}" style="color: white; text-decoration:none" download><i class="fa fa-cloud-download blink" aria-hidden="true"></i></a></span></p>
                   <p class="card-text"><small class="text-muted">Posted: {{book.posted_on}}</small></p>
                    {%if x_advert%}
@@ -99,7 +104,10 @@
 
                      
                          
-                          <img src="{{x_advert.product_cover_image.url}}" alt="hsdjgzb" class="img-fluid">
+                          {%if x_advert.product_cover_image%}
+                          <a href="{%url 'item-detail' x_advert.pk%}"><img src="{{x_advert.product_cover_image.url}}" alt="{{x_advert.product_name}}" class="img-fluid"></a>
+                          {%endif%}
+                    </center>
                           </center>
                        </div>
                     </div>

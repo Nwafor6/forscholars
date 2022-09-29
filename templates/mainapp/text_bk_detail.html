@@ -35,20 +35,20 @@
            <div class="card shadow-sm">
              <!--  <div class="img-box">
                 {%if pq.cover_img%}
-                <a href="{{pq.file.url}}"><img src="{{pq.cover_img.url}}" alt=""></a>
+                <a href="{{pq.file}}"><img src="{{pq.cover_img.url}}" alt=""></a>
                 {%endif%}
               </div> -->
               <div class="detail-box">
                 <h5>
-                  <a href="{%url 'books' pq.slug%}">{{pq.title|safe}}</a>
+                  <a href="{%url 'books' pq.pk%}">{{pq.title|safe}}</a>
                 </h5>
                <!--  <p>
                   {{pq.about_book}}
                 </p> -->
-                <div><span class="badge badge-pill badge-primary">course: {{pq.title|slice:":20"|safe}}..</span></div>
-                 <div><span class="badge badge-pill badge-primary">Semester: {{pq.semester|safe}}</span></div>
-                 <div><span class="badge badge-pill badge-primary">Year: {{pq.year|safe}}</span></div>
-                 <span class="badge badge-pill badge-info"><a href="{{pq.file.url}}" style="color: white; text-decoration:none" download><i class="fa fa-cloud-download" aria-hidden="true"></i></a></span>
+                <div><span class="badge badge-pill badge-succes">course Code: {{pq.course_code|slice:":20"|safe}}..</span></div>
+                 <div><span class="badge badge-pill badge-succes">Semester: {{pq.semester|safe}}</span></div>
+                 <div><span class="badge badge-pill badge-succes">Year: {{pq.year|safe}}</span></div>
+                 <span class="badge badge-pill badge-info"><a href="{{pq.file}}" style="color: white; text-decoration:none" download><i class="fa fa-cloud-download" aria-hidden="true"></i></a></span>
                  <!-- <div style="margin-top: 5px;"></div> -->
               </div>
             </div>
@@ -70,14 +70,14 @@
               </div> -->
               <div class="detail-box">
                 <h5>
-                  <a href="{%url 'books' tb.slug%}">{{tb.title|safe}}</a>
+                  <a href="{%url 'books' tb.pk%}">{{tb.title|safe}}</a>
                 </h5>
                <!--  <p>
                   {{pq.about_book}}
                 </p> -->
                  <div><span class="badge badge-pill badge-primary">Semester: {{tb.semester|safe}}</span></div>
                  <div><span class="badge badge-pill badge-primary">Year: {{tb.year|safe}}</span></div>
-                 <span class="badge badge-pill badge-warning"><a href="{{tb.file.url}}" style="color: white; text-decoration:none" download><i class="fa fa-cloud-download" aria-hidden="true"></i></a></span>
+                 <span class="badge badge-pill badge-warning"><a href="{{tb.file}}" style="color: white; text-decoration:none" download><i class="fa fa-cloud-download" aria-hidden="true"></i></a></span>
                  <!-- <div style="margin-top: 5px;"></div> -->
               </div>
             </div>
@@ -93,12 +93,12 @@
             <div class="card shadow-sm">
              <!--  <div class="img-box">
                 {% if ho.cover_img %}
-                <a href="{{ho.file.url}}"><img src="{{ho.cover_img.url}}" alt=""></a>
+                <a href="{{ho.file}}"><img src="{{ho.cover_img.url}}" alt=""></a>
                 {%endif%}
               </div> -->
               <div class="detail-box">
                 <h5>
-                  <a href="{%url 'books' ho.slug%}">{{ho.title|safe}}</a>
+                  <a href="{%url 'books' ho.pk%}">{{ho.title|safe}}</a>
                 </h5>
                <!--  <p>
                   {{pq.about_book}}
@@ -108,7 +108,7 @@
                  <div class="spinner-border " role="status" style="display: none;">
                   <span class="sr-only"></span>
                 </div>
-                <span class="badge badge-pill badge-warning "><a href="{{ho.file.url}}" style="color: white; text-decoration:none;" download class="download"><i class="fa fa-cloud-download" aria-hidden="true"></i></a>
+                <span class="badge badge-pill badge-warning "><a href="{{ho.file}}" style="color: white; text-decoration:none;" download class="download"><i class="fa fa-cloud-download" aria-hidden="true"></i></a>
 
                  <!-- <div style="margin-top: 5px;"></div> -->
               </div>
@@ -125,7 +125,7 @@
             <div class="box ">
               <div class="img-box">
                 {% if ho.cover_img %}
-                <a href="{{pq.file.url}}"><img src="{{ho.cover_img.url}}" alt=""></a>
+                <a href="{{pq.file}}"><img src="{{ho.cover_img.url}}" alt=""></a>
                 {%endif%}
               </div>
               <div class="detail-box">
@@ -162,4 +162,4 @@
   
 <script></script>
  {% endblock%}
- <as
+ 

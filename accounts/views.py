@@ -19,6 +19,13 @@ from django.core.mail import send_mail, BadHeaderError
 from django.core.mail import EmailMultiAlternatives
 # end
 
+# imports for password reset
+from django.utils.http import urlsafe_base64_encode
+from django.contrib.auth.tokens import default_token_generator
+from django.contrib.auth.forms import PasswordResetForm
+from django.db.models import Q
+# end
+
 
 
 # Create your views here.
@@ -126,4 +133,38 @@ def activate(request, uidb64, token):
         return render(request, 'accounts/email_confirm_success.html') 
     else:  
         return HttpResponse('Activation link is invalid!')
-
+# reset user pasword
+def password_reset_request(request):
+	if request.user.is_authenticated:
+		return redirect('home')
+	if request.method == "POST":
+		password_reset_form = PasswordResetForm(request.POST)
+		current_site = get_current_site(request)
+		if password_reset_form.is_valid():
+			data = password_reset_form.cleaned_data['email']
+			associated_users = User.objects.filter(Q(email=data))
+			if associated_users.exists():
+				for user in associated_users:
+					subject = "Password Reset Requested"
+					email_template_name = "password/password_reset_email.html"
+					c = {
+					"email":user.email,
+					'domain':current_site.domain,
+					'site_name': 'Biriwka',
+					"uid": urlsafe_base64_encode(force_bytes(user.pk)),
+					"user": user,
+					'token': default_token_generator.make_token(user),
+					'protocol': 'http',
+					}
+					message = render_to_string(email_template_name, c)
+					try:
+						# send_mail(subject, email, 'admin@example.com' , [user.email], fail_silently=False)
+						
+						msg = EmailMultiAlternatives(subject, message, 'nwaforglory6@gmail.com', [user.email]) 
+						msg.attach_alternative(message, "text/html") 
+						msg.send() 
+					except BadHeaderError:
+						return HttpResponse('Invalid header found.')
+					return redirect ("password_reset_done")
+	password_reset_form = PasswordResetForm()
+	return render(request=request, template_name="password/password_reset.html", context={"password_reset_form":password_reset_form})

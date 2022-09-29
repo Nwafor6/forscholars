@@ -28,12 +28,12 @@
   height: 200px;
 }
 .item-body span{
-  background-color: red;
+  background-color: grey;
   color: white;
   border-radius: 40px;
-  padding: 4px;
+  padding: 9px;
   margin: 5px;
-  font-size: 9px;
+  font-size: 15px;
   font-weight: bold;
 }
 .item{
@@ -83,7 +83,7 @@
                 </div>
                 <div class="item-body">
                   <h5>{{item.product_name}}</h5>
-                  <p>Price: <span>{{item.product_price|safe}}</span></p>
+                  <p>Price: <span>#{{item.product_price|safe}}</span></p>
                   <p>Category: {{item.product_category|safe}}</p>
                   <p>Seller: {{user.first_name|safe}} {{user.last_name|safe}} | {{user.email|safe}} </p>
                   <p>Location: {{item.product_location|safe}}</p>
@@ -110,7 +110,7 @@
                   </div>
                   <div class="item-body">
                     <a href="{% url 'item-detail' item.pk %}"><h6>{{item.product_name}}</h6></a>
-                    <p>Price: <span>{{item.product_price}}</span></p>
+                    <p>Price: <span>#{{item.product_price}}</span></p>
                     <p>Category: {{item.product_category}}</p>
                     <p><small>Posted: {{item.posted_on|timesince}}</small></p>
                   </div>
